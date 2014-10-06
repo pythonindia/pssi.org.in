@@ -23,9 +23,10 @@ Thus, PSSI was registered in Bangalore in 2013 as the new society for managing a
 
 ## How do I become a member of the PSSI ?
 
-In order to become a lifetime member of the PSSI you need to satisfy the following.
-  * You need to be an Indian citizen.
-  * Pay a once lifetime membership fee of INR 600/- to register yourself as a member.
+In order to become a member of the PSSI you need to satisfy the following.
+
+  - You need to be an Indian citizen.
+  - Pay a membership fee of INR 600/- to register yourself as a member for 2 years.
 
 ## What are the benefits of being a PSSI member ?
 
@@ -66,4 +67,4 @@ The board positions of PSSI to which annual elections are held every year includ
 ## When is the AGM of PSSI held ?
 
 The AGM (Annual General Meeting) of PSSI is held every year on the last day of PyCon India conference
-in the same venue. The last AGM was held in Sep 1 2013 at NIMHANS Convention Centre, Bangalore.
+in the same venue. The last AGM was held on Sep 28, 2014 at NIMHANS Convention Centre, Bangalore.
