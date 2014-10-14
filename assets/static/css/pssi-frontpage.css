@@ -12,7 +12,7 @@ body {
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
 
 .pssi-header {
-    height: 400px;
+    height: 250px;
     background: url('/static/images/back21.jpg') center center no-repeat scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
