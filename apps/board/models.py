@@ -9,7 +9,6 @@ class Designation(BaseModel):
     Can be added or deleted according to board decision.
     """
     name = models.CharField(max_length=100, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.name
@@ -22,7 +21,7 @@ class BoardMember(BaseModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     designation = models.ForeignKey('Designation')
     start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(black=True, null=True)
+    end_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         unique_together = ('user', 'designation', 'start_date', 'end_date')
