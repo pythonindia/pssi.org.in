@@ -21,6 +21,8 @@ How to setup
 
  - Run `python manage.py syncdb` and create a superuser when prompted
 
+ - Run `python manage.py migrate` to apply pending migrations
+
  - Run `python manage.py runserver`
 
 Configuring Django-allauth
