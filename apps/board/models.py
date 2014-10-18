@@ -14,14 +14,19 @@ class Designation(models.Model):
         return self.name
 
 
-class BoardMember(models.Model):
+class MemberProfile(models.Model):
     """
-    The board members. Each have a start date and end date
+    The members profile. Each have a start date and end date
     """
     user = models.ForeignKey(get_user_model())
     designation = models.ForeignKey('Designation')
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(black=True, null=True)
+    designation = models.ForeignKey('Designation')
+    location = mdoels.CharField(max_length=100)
+    state = mdoels.CharField(max_length=100)
+    country = mdoels.CharField(max_length=100)
+    organisation = mdoels.CharField(max_length=100, blank=True, Null=True)
 
     def __unicode__(self):
         return "{designation}: {user_name}".format(
@@ -30,6 +35,8 @@ class BoardMember(models.Model):
         )
 
 
+'''
+# To be Used on Future
 class Election(models.Model):
     """
     Election for board member positions
@@ -57,3 +64,4 @@ class Vote(models.Model):
     candidate = models.ForeignKey(get_user_model())
     created_at = models.DateTimeField(auto_now_add=True)
 
+'''
