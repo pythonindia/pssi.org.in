@@ -30,7 +30,7 @@ class TravelAid(models.Model):
 	comments = models.TextField(blank=True, null=True)
 
 
-	 def __unicode__(self):
+	def __unicode__(self):
         return "%s %s" %(self.id, self.user)
 
 	class Meta:
