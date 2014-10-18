@@ -23,10 +23,10 @@ class MemberProfile(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(black=True, null=True)
     designation = models.ForeignKey('Designation')
-    location = mdoels.CharField(max_length=100)
-    state = mdoels.CharField(max_length=100)
-    country = mdoels.CharField(max_length=100)
-    organisation = mdoels.CharField(max_length=100, blank=True, Null=True)
+    location = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    organisation = models.CharField(max_length=100, blank=True, Null=True)
 
     def __unicode__(self):
         return "{designation}: {user_name}".format(
