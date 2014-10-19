@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python Software Society of India (PSSI)</title><link>http://pssi.org.in/</link><description></description><atom:link href="http://pssi.org.in/feeds/pssi.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 01 Oct 2014 15:20:00 +0530</lastBuildDate><item><title>What is PSSI?</title><link>http://pssi.org.in/index.html</link><description>&lt;h2&gt;What does &lt;strong&gt;"PSSI"&lt;/strong&gt; stand for ?&lt;/h2&gt;
+&lt;p&gt;The name &lt;strong&gt;PSSI&lt;/strong&gt; stands for the organization &lt;em&gt;Python Software Society of India&lt;/em&gt;. It is a non-profit organization that manages annual &lt;strong&gt;PyCon India&lt;/strong&gt; conference and also other activities to promote Python programming language in India.&lt;/p&gt;
+&lt;h2&gt;Can you tell me something about the history and background of &lt;strong&gt;PSSI&lt;/strong&gt; ?&lt;/h2&gt;
+&lt;p&gt;PyCon India started in 2009 as a result of efforts by Noufal Ibrahim and a team of dedicated volunteers.
+In order to create an umbrella society for managing funds for PyCon India, the late Kenneth Gonsalves
+registered &lt;strong&gt;Indian Python Software Society (IPSS)&lt;/strong&gt; in 2010 in Ooty, Tamilnadu.
+After the sad demise of Kenneth in August 2012, there was nobody to manage the affairs of &lt;strong&gt;IPSS&lt;/strong&gt; in Ooty.
+In order to create an organization which could continue to be the centre of organizing affairs of PyCon
+India and related efforts, it was decided in an SGM of IPSS to register a new organization for the same
+in Bangalore, since most of the organizing members of PyCon India were based in Bangalore at that time.
+Thus, PSSI was registered in Bangalore in 2013 as the new society for managing affairs related to PyCon India.&lt;/p&gt;
+&lt;h2&gt;How do I become a member of the PSSI ?&lt;/h2&gt;
+&lt;p&gt;In order to become a member of the PSSI you need to satisfy the following.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to be an Indian citizen.&lt;/li&gt;
+&lt;li&gt;Pay a membership fee of INR 600/- to register yourself as a member for 2 years.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What are the benefits of being a PSSI member ?&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Be able to attend the Annual General Meeting (AGM) every year and make your voice heard in
+  making the society policies and in the conduct and organization of PyCon India conference.&lt;/li&gt;
+&lt;li&gt;Be able to stand for elections to the PSSI board and influence changes from a position
+  of power.&lt;/li&gt;
+&lt;li&gt;Apart from these, PSSI provides a platform for exerting a very powerful influence on
+  the use and adoption of Python programming language in academic &amp;amp; industrial areas. Being
+  part of PSSI allows you to make your voice heard and be a prominent part of this influence.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Is PSSI related to PSF (Python Software Foundation) in any way ?&lt;/h2&gt;
+&lt;p&gt;PSSI is not directly connected to PSF in any organizational or hierarchical manner. However PSSI can
+be thought of as a counterpart of PSF globally in an Indian context. What PSF aims to do in terms
+of providing a direction and being the single organisational body for the Python programming language
+globally (and with a specific focus in the U.S.A), PSSI aims to do with a focus on India.&lt;/p&gt;
+&lt;p&gt;However it is to be noted that PSF has more at stake in the Python programming language than PSSI.
+For example, the Intellectual Property, Copyright and Trademarks of Python Programming language
+are vested in the PSF. PSSI has no such rights on Python. The primary focus of PSSI as of today is
+the organization and conduct of PyCon India conference and associated events annually.&lt;/p&gt;
+&lt;p&gt;It is also worth mentioning that PSSI has received funds from PSF for conducting PyCon India in the past
+and might receive such funds in the future as well. However PSF has no say in the governance and
+conduct of the board members of PSSI.&lt;/p&gt;
+&lt;h2&gt;What are the board positions of PSSI ?&lt;/h2&gt;
+&lt;p&gt;The board positions of PSSI to which annual elections are held every year include,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;President.&lt;/li&gt;
+&lt;li&gt;Vice-President.&lt;/li&gt;
+&lt;li&gt;Secretary.&lt;/li&gt;
+&lt;li&gt;Treasurer.&lt;/li&gt;
+&lt;li&gt;Joint-Secretary&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;When is the AGM of PSSI held ?&lt;/h2&gt;
+&lt;p&gt;The AGM (Annual General Meeting) of PSSI is held every year on the last day of PyCon India conference
+in the same venue. The last AGM was held on Sep 28, 2014 at NIMHANS Convention Centre, Bangalore.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">PSSI</dc:creator><pubDate>Wed, 01 Oct 2014 15:20:00 +0530</pubDate><guid>tag:pssi.org.in,2014-10-01:index.html</guid><category>pssi</category></item><item><title>PyCon India</title><link>http://pssi.org.in/pyconindia.html</link><description>&lt;p&gt;PyCon India is the premier conference in India on using and developing the Python programming language is conducted annually by the Python developer community. It attracts the best Python programmers from across the country and abroad.&lt;/p&gt;
+&lt;h2&gt;Conference Host City&lt;/h2&gt;
+&lt;p&gt;There was an original policy of  trying to conduct PyCon India every year in a different city. We had conducted
+PyCon India 2011 in the city of Pune as well. However, PyCon India 2012 which was planned to be done in Pune
+had to be shifted to Bangalore due to lack of support in the organizational infrastructure on the ground.&lt;/p&gt;
+&lt;p&gt;For a city to host PyCon India, it should have a well developed local Python user group and also some local
+leadership with some experience in conducting and running conferences - in a small or medium-large scale. Since
+it was perceived that it would take some time for some of the other cities to catch up to Bangalore in terms
+of this kind of support and leadership talent, the original policy of trying to conduct PyCon India every year
+in a different city has been put on suspension after the experience of 2012.&lt;/p&gt;
+&lt;p&gt;PSSI has been organizing &lt;strong&gt;Python Month&lt;/strong&gt; and also helping to organize some mini conferences in other cities
+since then. In the future, if it is perceived that some other cities are capable to organize PyCon India with
+sufficient grass root organizational culture and leadership, the conference could be moved out of Bangalore.
+Even then a rotational policy would emerge at best, rotating the conference among a few candidate cities
+including Bangalore.&lt;/p&gt;
+&lt;p&gt;As of writing this guideline, the default host city of the conference is &lt;strong&gt;Bangalore&lt;/strong&gt; and we don't perceive this
+to change unless other candidate cities emerge in the future. The question of conference host city is at this point
+an irrelevant one as it defaults to Bangalore.&lt;/p&gt;
+&lt;h2&gt;Conference Venue (Actual Physical Location)&lt;/h2&gt;
+&lt;p&gt;The conference should be conducted in a location that is ideally,&lt;/p&gt;
+&lt;p&gt;Primarily,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Reasonably central in the host city.&lt;/li&gt;
+&lt;li&gt;Well accessible by Road, Rail and Air.&lt;/li&gt;
+&lt;li&gt;Has a clutch of good hotels and restaurants nearby.&lt;/li&gt;
+&lt;li&gt;At least 2 large halls with possibly a central Hall (for Keynotes).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Seconadarily,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Halls are ideally situated on the ground floor so that
+   attendees don't need elaborate directions to reach them.&lt;/li&gt;
+&lt;li&gt;Good A/V or possiblity/space for arranging good A/V.&lt;/li&gt;
+&lt;li&gt;Good projector infrastructure.&lt;/li&gt;
+&lt;li&gt;Reasonable Acoustics in Halls and Rooms.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A good example of a venue that satisfies most of this criteria is &lt;strong&gt;NIMHANS Convention Centre, Bangalore&lt;/strong&gt; .&lt;/p&gt;
+&lt;h2&gt;Conference Format&lt;/h2&gt;
+&lt;p&gt;We have been following a format of 3 days of conference with the 1st day for Workshops followed by 2 days of talks since PyCon India 2012. This format is unchanged as of the upcoming PyCon India (2014) as well.&lt;/p&gt;
+&lt;p&gt;There have been discussions of adding days for Coding and development sprints on Python or Python projects. So far
+these have not been attempted yet. It is expected that in the future the conference retains the current format
+with possibly more days added for other activities including but not limited to coding sprints.&lt;/p&gt;
+&lt;h2&gt;Mailing Lists&lt;/h2&gt;
+&lt;p&gt;The public mailing list for PyCon India is &lt;strong&gt;inpycon@python.org&lt;/strong&gt; . All open discussions and public matters would be conducted in this mailing list.&lt;/p&gt;
+&lt;p&gt;There is a private mailing list for the conference organizers which is &lt;strong&gt;contact@in.pycon.org&lt;/strong&gt; . Matters which are perceived to be discussed in a more private space would be sent to this address.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">PSSI</dc:creator><pubDate>Wed, 01 Oct 2014 15:20:00 +0530</pubDate><guid>tag:pssi.org.in,2014-10-01:pyconindia.html</guid><category>pyconindia</category></item></channel></rss>
