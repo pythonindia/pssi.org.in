@@ -310,7 +310,9 @@
   padding-right: 4em;
 }
 
-
+.inlineblock {
+  display: inline-block !important;
+}
 a.white:hover {
   color: white;
 }
