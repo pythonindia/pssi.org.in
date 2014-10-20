@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
 
     'board',
+    'grants',
 )
 
 MIDDLEWARE_CLASSES = (
