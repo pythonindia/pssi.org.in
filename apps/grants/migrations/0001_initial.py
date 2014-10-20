@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='GrantRequest',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('event_details', models.TextField()),
@@ -27,9 +27,8 @@ class Migration(migrations.Migration):
                 ('amount', models.FloatField()),
                 ('granted_amount', models.FloatField(default=0)),
                 ('support_from_other', models.TextField(blank=True, null=True)),
-                ('previous_talk_info', models.TextField(blank=True, null=True)),
                 ('comments', models.TextField(blank=True, null=True)),
-                ('status', models.CharField(max_length=1, db_index=True, choices=[('p', 'PENDING'), ('a', 'ACCEPTED'), ('r', 'REJECTED'), ('c', 'CANCELLED')])),
+                ('status', models.CharField(choices=[('p', 'PENDING'), ('a', 'ACCEPTED'), ('r', 'REJECTED'), ('c', 'CANCELLED')], db_index=True, max_length=1)),
             ],
             options={
                 'abstract': False,
@@ -39,7 +38,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='GrantType',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('name', models.CharField(unique=True, max_length=100)),

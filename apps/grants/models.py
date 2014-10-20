@@ -32,7 +32,6 @@ class GrantRequest(BaseModel):
     amount = models.FloatField()
     granted_amount = models.FloatField(default=0)
     support_from_other = models.TextField(blank=True, null=True)
-    previous_talk_info = models.TextField(blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=1, choices=GRANT_STATUS_CHOICES, db_index=True)
 
