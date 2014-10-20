@@ -5,24 +5,32 @@
  */
 
 body {
-    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 65px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     font-family: 'Open Sans', sans-serif;
     background-color: #FBFBF6;
+}
+h1, h2, h3, h4, h5 {
+    padding: 0;
+    margin: 0;
+    line-height: 1.4em;
 }
 
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
 
-.header-big {
-    height: 400px;
+.masthead {
+    height: 27em;
     display: block;
-    /*background: url('/static/images/masthead.jpg') center center no-repeat scroll;
+    background: url('/static/images/masthead.jpg') center center no-repeat scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    -o-background-size: cover;*/
+    -o-background-size: cover;
     position: relative;
 }
-/*.pssi-header:after {
+.header-big {
+    height: 18em;
+}
+.masthead:after {
     background: rgba(43, 91, 132, 0.6);
     content: '';
     display: block;
@@ -33,18 +41,26 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-}*/
+}
 
 .navbar-default {
-    background-color: #2b5b84;
+    background-color: #122937;
     border: 0;
 }
 .navbar {
     margin-bottom: 0;
+    min-height: 65px;
 }
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
     color: #FFF;
     text-transform: uppercase;
+}
+.navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 65px;
+    line-height: 65px;
+    vertical-align: middle;
 }
 .white {
     color: #FFF;

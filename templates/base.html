@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="/static/css/pssi-frontpage.css" rel="stylesheet">
+    <link href="/static/css/layout.css" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -41,19 +42,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home' %}">PSSI</a>
+                <a class="navbar-brand" href="{% url 'home' %}"><span class="yellow">PSSI</span><div style="font-size: 10px; text-transform:uppercase;"><span class="yellow">P</span>ython <span class="yellow">S</span>oftware <span class="yellow">S</span>ociety of <span class="yellow">I</span>ndia</div></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programmes <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
                       </ul>
                     </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
