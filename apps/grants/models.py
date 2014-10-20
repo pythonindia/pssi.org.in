@@ -11,7 +11,7 @@ GRANT_STATUS_CHOICES = (
 
 
 class GrantType(BaseModel):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __unicode__(self):
         return self.name
@@ -19,20 +19,20 @@ class GrantType(BaseModel):
 
 class GrantRequest(BaseModel):
     """
-    Travel Aid requests
+    Grant requests
     """
     gtype = models.ForeignKey('GrantType')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     event_details = models.TextField()
-    event_date_to = models.DateTimeField()
-    event_date_from = models.DateTimeField()
+    event_address = models.TextField()
+    event_url = models.URLField(blank=True, null=True)
+    event_date_to = models.DateField()
+    event_date_from = models.DateField()
     talk_url = models.TextField(blank=True, null=True)
     amount = models.FloatField()
-    accepted_amount = models.FloatField(default=0)
+    granted_amount = models.FloatField(default=0)
     support_from_other = models.TextField(blank=True, null=True)
     previous_talk_info = models.TextField(blank=True, null=True)
-    granted_support_before = models.BooleanField(default=False)
-    granted_support_info = models.TextField(blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=1, choices=GRANT_STATUS_CHOICES, db_index=True)
 
