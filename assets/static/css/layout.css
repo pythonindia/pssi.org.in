@@ -316,3 +316,33 @@
 a.white:hover {
   color: white;
 }
+.white {
+    color: #FFF;
+}
+.yellow {
+    color: #D5A952 !important;
+}
+.fill-blue {   
+    background-color: #2b5b84;
+}
+.fill-white {   
+    background-color: #FFF;
+}
+.normal {
+    font-weight: 400;
+}
+
+.center-wrapper {
+    display: table;
+}
+.absolute-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+.measure-block {
+    width: 80%;
+    margin: auto;
+}
+.tint {
+  font-size: 0.6em;
+}

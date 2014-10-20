@@ -1,19 +1,13 @@
-/*!
- * Start Bootstrap - Business Frontpage HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
+/* Common styles */
 body {
-    padding-top: 4.3em; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 4.3em; 
     font-family: 'Open Sans', sans-serif;
     background-color: #FBFBF6;
     font-size: 1.5em;
     line-height: 1.5em;
 }
 
-/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
-
+/* Homepage styles */
 .masthead {
     height: 27em;
     display: block;
@@ -44,6 +38,7 @@ body {
     bottom: 0;
 }
 
+/* Customize Bootstrap */
 .navbar-default {
     background-color: #122937;
     border: 0;
@@ -106,29 +101,4 @@ body {
         display: inline-block !important;
     }
 }
-.white {
-    color: #FFF;
-}
-.yellow {
-    color: #D5A952;
-}
-.fill-blue {   
-    background-color: #2b5b84;
-}
-.fill-white {   
-    background-color: #FFF;
-}
-.normal {
-    font-weight: 400;
-}
-.center-wrapper {
-    display: table;
-}
-.absolute-center {
-    display: table-cell;
-    vertical-align: middle;
-}
-.measure-block {
-    width: 80%;
-    margin: auto;
-}
+
