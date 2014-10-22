@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import GrantType, GrantRequest
 
-# Register your models here.
+
+admin.site.register(GrantType)
+admin.site.register(GrantRequest)
