@@ -26,6 +26,9 @@
 .icon-user:before {
 	content: "\e600";
 }
+.icon-checkmark-circle:before {
+	content: "\e606";
+}
 .icon-checkmark:before {
 	content: "\e601";
 }
