@@ -322,11 +322,17 @@ a.white:hover {
 .yellow {
     color: #D5A952 !important;
 }
+.fill-yellow {
+    background-color: #D5A952;
+}
 .fill-blue {   
     background-color: #2b5b84;
 }
 .fill-white {   
     background-color: #FFF;
+}
+.fill-gray {   
+    background-color: #EEE;
 }
 .normal {
     font-weight: 400;
@@ -353,3 +359,48 @@ a.white:hover {
   bottom: 0;
   top: auto;
 }*/
+
+.form-container {
+  background: #FFF;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  border-radius: 0.15em;
+}
+.form-container h2 {
+  text-transform: uppercase;
+  font-size: 1.1em;
+  padding: 0.8em 0;
+  border-top-left-radius: 0.15em;
+  border-top-right-radius: 0.15em;
+  color: #FBFBF6;
+}
+.form-container input[type=text] + label {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] {
+  border: 2px solid #CCC;
+  padding: 0.5em 1em;
+  width: 100%;
+  border-radius: 0.3em;
+}
+button {
+  background: #2b5b84;
+  border: 0;
+  border-radius: 0.3em;
+  color: #FFF;
+  padding: 0.3em 1.5em 0.5em 1.5em;
+}
+button:hover {
+  background: #3A6E99;
+}
+.flushright {
+  float: right;
+}
+.flushleft {
+  float: left;
+}
+.clearboth {
+  clear: both;
+}
+
