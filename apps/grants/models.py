@@ -36,4 +36,8 @@ class GrantRequest(BaseModel):
     status = models.CharField(max_length=1, choices=GRANT_STATUS_CHOICES, db_index=True)
 
     def __unicode__(self):
-        return "{user}: {status}".format(user=self.user.get_full_name(), status=self.status)
+        return "{user}: {gtype} [{status}]".format(
+            user=self.user.get_full_name(),
+            gtype=self.gtype.name,
+            status=self.status
+        )
