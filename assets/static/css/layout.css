@@ -384,7 +384,7 @@ a.white:hover {
   width: 100%;
   border-radius: 0.3em;
 }
-button {
+button, .form-container input[type=submit] {
   background: #2b5b84;
   border: 0;
   border-radius: 0.3em;
@@ -404,3 +404,16 @@ button:hover {
   clear: both;
 }
 
+ul.errorlist{
+  padding: 0;
+  margin: 0;
+}
+ul.errorlist li {
+  list-style-type: none;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+  color: #a94442;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+}
