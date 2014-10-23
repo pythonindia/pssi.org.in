@@ -352,13 +352,21 @@ a.white:hover {
 .tint {
   font-size: 0.6em;
 }
-/*footer {
+html, body {
+  height: 100%;
+}
+body {
+  height: auto;
+  min-height: 100%;
+  position: relative;
+}
+footer {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   top: auto;
-}*/
+}
 
 .form-container {
   background: #FFF;
