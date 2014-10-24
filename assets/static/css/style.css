@@ -119,20 +119,20 @@ a.socialaccount_provider {
     border-radius: 0.3em;
 }
 a.socialaccount_provider.github {
-    background-color: #444444;
-    color: #FFF;
+    background-color: #DDD;
+    color: #444444;
 }
 a.socialaccount_provider.google {
-    background-color: #DF4A32;
+    background-color: #4683ea;
     color: #FFF;
 }
 a.socialaccount_provider.google:hover {
-    border-bottom: 0.15em solid #D2352C;
-    background-color: #E5523A;
+    border-bottom: 0.15em solid #4683ea;
+    background-color: #4387fd;
 }
 a.socialaccount_provider.github:hover {
-    border-bottom: 0.15em solid #373737;
-    background-color: #4C4B4B;
+    border-bottom: 0.15em solid #DBDBDB;
+    background-color: #E5E5E5;
 }
 .icon {
     padding-right: 0.4em;
