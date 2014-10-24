@@ -47,6 +47,7 @@ INSTALLED_APPS = (
 
     'board',
     'grants',
+    'blogs',
 )
 
 MIDDLEWARE_CLASSES = (
