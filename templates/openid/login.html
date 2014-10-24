@@ -13,7 +13,7 @@
                     <form id="openid_login_form" class="openid_login" method="post" action="{% url 'openid_login' %}">
 						{% csrf_token %}
 						{{form.as_p}}
-						<button type="submit">Sign In</button>
+						<button type="submit" class="space-half-top">Sign In</button>
 					</form>
                 </div>
             </div>

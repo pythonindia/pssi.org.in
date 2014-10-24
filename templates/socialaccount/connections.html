@@ -30,14 +30,14 @@
 									{% endwith %}
 								{% endfor %}
 								<div>
-									<button type="submit">{% trans 'Remove' %}</button>
+									<button type="submit" class="space-half-top">{% trans 'Remove' %}</button>
 								</div>
 							</fieldset>
 						</form>
 					{% else %}
 						<p>{% trans 'You currently have no social network accounts connected to this account.' %}</p>
 					{% endif %}
-					<p class="all-caps">{% trans 'Add a 3rd Party Account:' %}</p>
+					<p class="all-caps push-1-top">{% trans 'Add a 3rd Party Account:' %}</p>
 					<ul class="socialaccount_providers">
 						{% include "socialaccount/snippets/provider_list.html" with process="connect" %}
 					</ul>
