@@ -9,6 +9,7 @@ class GrantRequestForm(ModelForm):
         empty_label=None,
         queryset=GrantType.objects.all().order_by('id')
     )
+
     class Meta:
         model = GrantRequest
         exclude = [
