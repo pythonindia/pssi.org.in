@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
 
     'django_markdown',
+    'bootstrap3',
 
     'board',
     'grants',

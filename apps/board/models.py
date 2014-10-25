@@ -16,7 +16,7 @@ class Designation(BaseModel):
 
 class BoardMember(BaseModel):
     """
-    The board members. Each have a start date and end date
+    The members profile. Each have a start date and end date
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     designation = models.ForeignKey('Designation')

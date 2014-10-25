@@ -26,9 +26,15 @@ class GrantRequest(BaseModel):
     event_details = models.TextField()
     event_address = models.TextField()
     event_url = models.URLField(blank=True, null=True)
-    event_date_to = models.DateField(help_text="YYYY-MM-DD")
-    event_date_from = models.DateField(help_text="YYYY-MM-DD")
-    talk_url = models.URLField(blank=True, null=True)
+    event_date_to = models.DateField(
+        help_text="Enter in following format: YYYY-MM-DD")
+    event_date_from = models.DateField(
+        help_text="Enter in following format: YYYY-MM-DD")
+    talk_url = models.URLField(
+        help_text="Your talk/session should be accepted already for the grant \
+        request to be processed.",
+        blank=True, null=True
+    )
     amount = models.FloatField("Requested amount")
     granted_amount = models.FloatField(default=0)
     support_from_other = models.TextField(
@@ -41,7 +47,8 @@ class GrantRequest(BaseModel):
         help_text="If you have anything else to mention, please do it here.",
         blank=True, null=True
     )
-    status = models.CharField(max_length=1, choices=GRANT_STATUS_CHOICES, db_index=True)
+    status = models.CharField(
+        max_length=1, choices=GRANT_STATUS_CHOICES, db_index=True)
 
     def __str__(self):
         return "{user}: {gtype} [{status}]".format(

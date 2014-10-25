@@ -1,6 +1,7 @@
 Django==1.7.1
 django-allauth==0.18.0
 django-markdown==0.7.1
+django-bootstrap3==4.11.0
 oauthlib==0.6.3
 psycopg2==2.5.4
 python3-openid==3.0.4
