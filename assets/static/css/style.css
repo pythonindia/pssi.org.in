@@ -26,7 +26,7 @@ body {
     height: 18em;
 }
 .masthead:after {
-    background: rgba(43, 91, 132, 0.6);
+    background: rgba(43, 91, 132, 0.1);
     content: '';
     display: block;
     height: inherit;
