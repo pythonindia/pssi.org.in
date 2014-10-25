@@ -20,6 +20,8 @@ urlpatterns = patterns(
         template_name='grants/apply_grants_success.html',
     ), name='grants_req_success'),
 
+    url(r'^blog/', include('blogs.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
     url('^markdown/', include('django_markdown.urls')),
