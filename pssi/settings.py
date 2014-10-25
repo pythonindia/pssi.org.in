@@ -17,9 +17,6 @@ SITE_ID = 1
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -30,6 +27,10 @@ ALLOWED_HOSTS = ['.pssi.org.in']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+if DEBUG:
+    SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
+else:
+    SECRET_KEY = os.environ['SECRET_KEY']
 
 # Application definition
 
