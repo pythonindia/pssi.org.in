@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
 
+    'bootstrap3',
+
     'board',
     'grants',
 )
