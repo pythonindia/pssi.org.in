@@ -15,7 +15,9 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/static/css/pssi-frontpage.css" rel="stylesheet">
+    <link href="/static/css/layout.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/fonts.css" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -31,31 +33,29 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home' %}">PSSI</a>
+                <a class="navbar-brand" href="{% url 'home' %}"><span class="yellow">PSSI</span><div style="font-size: 10px; text-transform:uppercase;"><span class="yellow">P</span>ython <span class="yellow">S</span>oftware <span class="yellow">S</span>ociety of <span class="yellow">I</span>ndia</div></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programmes <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
                       </ul>
                     </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts <span class="caret"></span></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs"><i class="glyphicon glyphicon-user"></i></span><span class="visible-xs">Account</span> <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         {% if user.is_authenticated %}
                         <li><a href="{% url 'socialaccount_connections' %}">Social Accounts</a></li>
@@ -86,24 +86,21 @@
     <!-- Page Content -->
     <div class="container">
 
-        <hr>
-
         {% block content %}
         {% endblock %}
 
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Python Software Society of India 2014</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
     </div>
+
+    <!-- Footer -->
+    <footer class="fill-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="push-half-top">Copyright &copy; Python Software Society of India 2014</p>
+                </div>
+            </div><!-- /.row -->
+        </div>
+    </footer>
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.0 -->
