@@ -13,6 +13,9 @@ urlpatterns = patterns(
     url(r'^pyconindia/$', TemplateView.as_view(
         template_name='pyconindia.html',
     ), name='pyconindia-static'),
+    url(r'^awards/$', TemplateView.as_view(
+        template_name='awards.html',
+    ), name='awards-static'),
 
     url(r'^grants/apply/$', GreatRequestCreateView.as_view(),
         name='grants_apply'),
