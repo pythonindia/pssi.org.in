@@ -27,6 +27,9 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['.pssi.org.in']
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
