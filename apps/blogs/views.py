@@ -10,3 +10,4 @@ class PostList(ListView):
 class PostDetails(DetailView):
     model = Post
     template_name = 'blogs/post.html'
+    context_object_name = 'post'
