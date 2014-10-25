@@ -27,11 +27,6 @@ ALLOWED_HOSTS = ['.pssi.org.in']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-if DEBUG:
-    SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
-else:
-    SECRET_KEY = os.environ['SECRET_KEY']
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -175,3 +170,8 @@ try:
     from pssi.local_settings import *
 except ImportError:
     print('local_settings.py not found')
+
+if DEBUG:
+    SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
+else:
+    SECRET_KEY = os.environ['SECRET_KEY']
