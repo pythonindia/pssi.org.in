@@ -5,6 +5,7 @@ from .models import Post
 class PostList(ListView):
     model = Post
     template_name = 'blogs/archive.html'
+    context_object_name = 'post_list'
 
 
 class PostDetails(DetailView):
