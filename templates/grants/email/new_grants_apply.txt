@@ -1,0 +1,6 @@
+{% autoescape on %}
+A new Financial grant application has been received. Below are the details -
+
+[INCOMPLETE]
+
+{% endautoescape %}
