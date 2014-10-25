@@ -45,10 +45,12 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
 
+    'django_markdown',
     'bootstrap3',
 
     'board',
     'grants',
+    'blogs',
 )
 
 MIDDLEWARE_CLASSES = (

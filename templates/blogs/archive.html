@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <h2>Blog Posts</h2>
+  <hr>
+  {% for post in object_list %}
+    <h3><a href="{% url 'blog_post' post.slug %}">{{ post.title }}</a></h3>
+    <div>{{ post.created_at }}</div><br>
+    <p>
+      {{ post.body|truncatechars_html:200 }} <a href="{% url 'blog_post' post.slug %}">Read more</a>
+    </p>
+    <hr>
+  {% empty %}
+    <p>We're yet to write any blog post.</p>
+  {% endfor %}
+</div>
+{% endblock %}
+
