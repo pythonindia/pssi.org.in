@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block head_title %}{{ post.title }} - {{ block.super }}{% endblock %}
+
 {% block content %}
 <div class="row">
   <h2><a href="#">{{ post.title }}</a></h2>
