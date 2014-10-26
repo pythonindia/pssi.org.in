@@ -24,6 +24,11 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['.pssi.org.in']
 
+ADMINS = (
+    ('Bibhas', 'me@bibhas.in'),
+    ('Kracekumar', 'me@kracekumar.com')
+)
+
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
@@ -107,8 +112,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-EMAIL_DEFAULT_FROM = 'Python Software Society of India <contact@pssi.org.in>'
-
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
@@ -140,6 +143,7 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Python Software Society of India <noreply@pssi.org.in>'
 
 
 LOGGING = {
