@@ -145,6 +145,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Python Software Society of India <noreply@pssi.org.in>'
 
+BOOTSTRAP3 = {
+    'required_css_class': 'required',
+}
 
 LOGGING = {
     'version': 1,

@@ -3,6 +3,14 @@
 
 {% block head_title %}Apply for Grant - {{ block.super }}{% endblock %}
 
+{% block endhead %}
+<style>
+  .required > label:after {
+    content: "*";
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
