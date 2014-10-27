@@ -17,9 +17,6 @@ SITE_ID = 1
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -27,6 +24,13 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['.pssi.org.in']
 
+ADMINS = (
+    ('Bibhas', 'me@bibhas.in'),
+    ('Kracekumar', 'me@kracekumar.com')
+)
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -45,7 +49,12 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
 
+    'django_markdown',
+    'bootstrap3',
+
     'board',
+    'grants',
+    'blogs',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,7 +91,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -102,8 +111,6 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
-
-EMAIL_DEFAULT_FROM = 'Python Software Society of India <contact@pssi.org.in>'
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
@@ -126,7 +133,21 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[PSSI] "
 ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 LOGIN_REDIRECT_URL = '/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Python Software Society of India <noreply@pssi.org.in>'
+
+BOOTSTRAP3 = {
+    'required_css_class': 'required',
+}
 
 LOGGING = {
     'version': 1,
@@ -160,6 +181,8 @@ LOGGING = {
         },
     }
 }
+
+SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
 
 # Override settings from local_settings.py
 try:

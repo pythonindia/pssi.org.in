@@ -1,0 +1,29 @@
+[
+{
+    "fields": {
+        "updated_at": "2014-10-22T15:55:09.040Z",
+        "created_at": "2014-10-22T15:52:34.129Z",
+        "name": "International Travel Grant"
+    },
+    "pk": 1,
+    "model": "grants.granttype"
+},
+{
+    "fields": {
+        "updated_at": "2014-10-22T15:55:03.787Z",
+        "created_at": "2014-10-22T15:55:03.787Z",
+        "name": "National Travel Grant"
+    },
+    "pk": 2,
+    "model": "grants.granttype"
+},
+{
+    "fields": {
+        "updated_at": "2014-10-22T15:55:37.467Z",
+        "created_at": "2014-10-22T15:55:37.467Z",
+        "name": "Workshop Grant"
+    },
+    "pk": 3,
+    "model": "grants.granttype"
+}
+]

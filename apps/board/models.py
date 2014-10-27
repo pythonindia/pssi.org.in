@@ -10,13 +10,13 @@ class Designation(BaseModel):
     """
     name = models.CharField(max_length=100, unique=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
 class BoardMember(BaseModel):
     """
-    The board members. Each have a start date and end date
+    The members profile. Each have a start date and end date
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     designation = models.ForeignKey('Designation')
@@ -26,7 +26,7 @@ class BoardMember(BaseModel):
     class Meta:
         unique_together = ('user', 'designation', 'start_date', 'end_date')
 
-    def __unicode__(self):
+    def __str__(self):
         return "{designation}: {user_name}".format(
             designation=self.designation,
             user_name=self.user.get_full_name()
@@ -44,7 +44,7 @@ class BoardMember(BaseModel):
 #     start_date = models.DateTimeField(auto_now_add=True)
 #     end_date = models.DateTimeField(black=True, null=True)
 
-#     def __unicode__(self):
+#     def __str__(self):
 #         return '{designation}: {date}'.format(
 #             designation=self.designation,
 #             date=self.start_date
@@ -59,4 +59,3 @@ class BoardMember(BaseModel):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 #     candidate = models.ForeignKey(settings.AUTH_USER_MODEL)
 #     created_at = models.DateTimeField(auto_now_add=True)
-
