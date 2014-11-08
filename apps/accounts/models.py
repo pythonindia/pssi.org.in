@@ -6,17 +6,46 @@ from django.db.utils import DatabaseError
 from common.models import BaseModel
 
 
-# class UserProfile(BaseModel):
-#     user = models.OneToOneField(
-#         settings.AUTH_USER_MODEL, related_name="profile"
-#     )
-#     is_pssi_member = models.BooleanField(default=False)
+class UserProfile(BaseModel):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, related_name="profile"
+    )
+    about = models.TextField(blank=True, null=True)
+    github_url = models.URLField(blank=True, null=True)
+    bitbucket_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.get_full_name()
 
 
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_profile(sender, **kwargs):
-#     if kwargs['created'] is True:
-#         try:
-#             UserProfile.objects.create(user_id=kwargs['instance'].id)
-#         except DatabaseError:
-#             pass
+class Membership(BaseModel):
+    PAYMENT_METHOD_CHOICES = (
+        ('on', 'Online'),
+        ('off', 'Offline'),
+    )
+
+    profile = models.ForeignKey(
+        'UserProfile', related_name="membership_history"
+    )
+    from_date = models.DateField()
+    to_date = models.DateField()
+    payment = models.ForeignKey('payments.Payment', blank=True, null=True)
+    payment_method = models.CharField(
+        max_length=3, choices=PAYMENT_METHOD_CHOICES, default='on'
+    )
+
+    def __str__(self):
+        return "{user}, {frm} to {to}".format(
+            user=self.user.get_full_name(),
+            frm=self.from_date,
+            to=self.to_date
+        )
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_profile(sender, **kwargs):
+    if kwargs['created'] is True:
+        try:
+            UserProfile.objects.create(user_id=kwargs['instance'].id)
+        except DatabaseError:
+            pass
