@@ -1,8 +1,10 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db.utils import DatabaseError
+from django.db.models import Q
 from common.models import BaseModel
 
 
@@ -16,6 +18,14 @@ class UserProfile(BaseModel):
 
     def __str__(self):
         return self.user.get_full_name()
+
+    @property
+    def is_pssi_member(self):
+        now = timezone.now()
+        return self.membership_history.filter(
+            from_date__lte=now,
+            to_date__gte=now,
+        ).count() > 0
 
 
 class Membership(BaseModel):

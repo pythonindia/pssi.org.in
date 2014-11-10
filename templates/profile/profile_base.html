@@ -25,8 +25,8 @@
 <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="{% url 'profile_home' %}">Profile</a></li>
-        <li><a href="#">Grant Requests</a></li>
+        <li><a href="{% url 'profile_home' %}">Profile</a></li>
+        <li><a href="{% url 'profile_grantreq_list' %}">Grant Requests</a></li>
         <li><a href="#">Payments</a></li>
       </ul>
       <!-- <ul class="nav nav-sidebar">
@@ -38,9 +38,20 @@
       </ul> -->
     </div>
     <div class="col-sm-9 col-md-10 main">
-      {% block profile_content %}
+        {% if not user.userprofile.is_pssi_member %}
+            <div class="alert alert-danger" role="alert">
+                You're not a PSSI member! Please make the payment and become member for 2 years.
+            </div>
+        {% endif %}
 
-      {% endblock profile_content %}
+        {% block profile_content %}
+        {% endblock profile_content %}
     </div>
 </div>
 {% endblock content %}
+
+{% block endbody %}
+<script type="text/javascript">
+    $('a[href="{{ request.path }}"]').parent("li").addClass('active');
+</script>
+{% endblock endbody %}

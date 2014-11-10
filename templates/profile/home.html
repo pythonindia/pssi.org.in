@@ -2,7 +2,10 @@
 {% load bootstrap3 %}
 {% load static from staticfiles %}
 
+{% block head_title %}Profile - {{ block.super }}{% endblock %}
+
 {% block endhead %}
+{{ block.super }}
     <link rel="stylesheet" href="{% static 'css/bootstrap-markdown.min.css' %}">
 {% endblock endhead %}
 
@@ -21,6 +24,7 @@
 {% endblock profile_content %}
 
 {% block endbody %}
+    {{ block.super }}
     <script src="{% static 'js/markdown.js' %}"></script>
     <script src="{% static 'js/bootstrap-markdown.js' %}"></script>
     <script>
