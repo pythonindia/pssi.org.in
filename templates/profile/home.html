@@ -1,9 +1,33 @@
 {% extends 'profile/profile_base.html' %}
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block endhead %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap-markdown.min.css' %}">
+{% endblock endhead %}
 
 {% block profile_content %}
 <h2>Edit Profile</h2>
 
-<form>
-
+<form action="." method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Save
+        </button>
+    {% endbuttons %}
 </form>
 {% endblock profile_content %}
+
+{% block endbody %}
+    <script src="{% static 'js/markdown.js' %}"></script>
+    <script src="{% static 'js/bootstrap-markdown.js' %}"></script>
+    <script>
+    $("#id_about").markdown({
+        autofocus:false,
+        savable:false,
+        resize: 'vertical'
+    })
+    </script>
+{% endblock endbody %}
