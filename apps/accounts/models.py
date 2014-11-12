@@ -33,6 +33,10 @@ class Membership(BaseModel):
         ('on', 'Online'),
         ('off', 'Offline'),
     )
+    MEMBERSHIP_STATUS_CHOICES = (
+        ('u', 'Under Review'),
+        ('a', 'Approved')
+    )
 
     profile = models.ForeignKey(
         'UserProfile', related_name="membership_history"
@@ -42,6 +46,9 @@ class Membership(BaseModel):
     payment = models.ForeignKey('payments.Payment', blank=True, null=True)
     payment_method = models.CharField(
         max_length=3, choices=PAYMENT_METHOD_CHOICES, default='on'
+    )
+    status = models.CharField(
+        "Status", max_length=1, choices=MEMBERSHIP_STATUS_CHOICES, default='u'
     )
 
     def __str__(self):
@@ -59,3 +66,10 @@ def create_profile(sender, **kwargs):
             UserProfile.objects.create(user_id=kwargs['instance'].id)
         except DatabaseError:
             pass
+
+
+@receiver(post_save, sender=Membership)
+def create_membership(sender, **kwargs):
+    if kwargs['created'] is True:
+        # FIXME: Send mail to staffs
+        pass
