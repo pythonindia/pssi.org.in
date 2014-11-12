@@ -3,13 +3,6 @@ from django.conf import settings
 from common.models import BaseModel
 from django_pgjson.fields import JsonField
 
-PAYMENT_STATUS_CHOICES = (
-    ('p', 'Pending'),
-    ('r', 'Received'),
-    ('c', 'Cancelled'),
-    ('f', 'Refunded')
-)
-
 
 class PaymentGateway(BaseModel):
     name = models.CharField(max_length=100, unique=True)
@@ -34,6 +27,13 @@ class PaymentType(BaseModel):
 
 
 class Payment(BaseModel):
+    PAYMENT_STATUS_CHOICES = (
+        ('p', 'Pending'),
+        ('r', 'Received'),
+        ('c', 'Cancelled'),
+        ('f', 'Refunded')
+    )
+
     gateway = models.ForeignKey("PaymentGateway")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
     ptype = models.ForeignKey("PaymentType")
@@ -47,8 +47,9 @@ class Payment(BaseModel):
     status_pg = models.CharField(
         "Status from Payment Gateway", max_length=50
     )
+
     # store the whole json response
-    raw_details = JsonField()
+    raw_details = JsonField(blank=True, null=True)
 
     def __str__(self):
-        return self.user.get_full_name(), self.gateway, self.created_at
+        return self.payment_id
