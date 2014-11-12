@@ -28,3 +28,12 @@ class GrantRequestListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return self.request.user.grantrequest_set.all()
+
+
+class MembershipView(LoginRequiredMixin, ListView):
+    model = Membership
+    template_name = 'profile/membership.html'
+    context_object_name = 'membership_history'
+
+    def get_queryset(self):
+        return self.request.user.profile.membership_history.all()
