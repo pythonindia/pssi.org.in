@@ -27,7 +27,7 @@
       <ul class="nav nav-sidebar">
         <li><a href="{% url 'profile_home' %}">Profile</a></li>
         <li><a href="{% url 'profile_grantreq_list' %}">Grant Requests</a></li>
-        <li><a href="#">Payments</a></li>
+        <li><a href="{% url 'profile_membership' %}">Membership</a></li>
       </ul>
       <!-- <ul class="nav nav-sidebar">
         <li><a href="">Nav item</a></li>
@@ -38,9 +38,9 @@
       </ul> -->
     </div>
     <div class="col-sm-9 col-md-10 main">
-        {% if not user.userprofile.is_pssi_member %}
+        {% if not user.profile.is_pssi_member %}
             <div class="alert alert-danger" role="alert">
-                You're not a PSSI member! Please make the payment and become member for 2 years.
+                You're not a PSSI member! Please make the <a href="{% url 'profile_membership' %}">payment</a> and become member for 2 years.
             </div>
         {% endif %}
 

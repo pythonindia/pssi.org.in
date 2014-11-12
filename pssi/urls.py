@@ -25,6 +25,7 @@ urlpatterns = patterns(
 
     url(r'^blog/', include('blogs.urls')),
     url(r'^profile/', include('accounts.urls')),
+    url(r'^payment/', include('payments.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
