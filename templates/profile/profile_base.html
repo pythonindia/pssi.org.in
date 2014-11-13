@@ -38,7 +38,7 @@
       </ul> -->
     </div>
     <div class="col-sm-9 col-md-10 main">
-        {% if not user.profile.is_pssi_member %}
+        {% if not user_profile.is_pssi_member %}
             <div class="alert alert-danger" role="alert">
                 You're not a PSSI member! Please make the <a href="{% url 'profile_membership' %}">payment</a> and become member for 2 years.
             </div>

@@ -4,12 +4,12 @@
 {% block head_title %}Membership Details - {{ block.super }}{% endblock %}
 
 {% block profile_content %}
-<h2>Membership Status: {% if user.profile.is_pssi_member %}{{ user.profile.membership_history.last.get_status_display }}{% else %}Not a Member{% endif %}</h2>
-{% if not user.profile.is_pssi_member %}
+<h2>Membership Status: {% if user_profile.is_pssi_member %}{{ user_profile.membership_history.last.get_status_display }}{% else %}Not a Member{% endif %}</h2>
+{% if not user_profile.is_pssi_member %}
 Make the payment of Rs 600 to become a member for 2 years.
 
 <br> <br>
-<a href="https://www.instamojo.com/pssi/test-pssi-membership/?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="remote" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a><script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
+<a href="https://www.instamojo.com/pssi/test-pssi-membership/?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="link" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a><script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
 
 {% endif %}
 <hr>
