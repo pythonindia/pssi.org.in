@@ -53,7 +53,7 @@ class Membership(BaseModel):
 
     def __str__(self):
         return "{user}, {frm} to {to}".format(
-            user=self.user.get_full_name(),
+            user=self.profile.user.username,
             frm=self.from_date,
             to=self.to_date
         )
