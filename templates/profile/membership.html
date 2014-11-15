@@ -1,0 +1,60 @@
+{% extends 'profile/profile_base.html' %}
+{% load static from staticfiles %}
+
+{% block head_title %}Membership Details - {{ block.super }}{% endblock %}
+
+{% block profile_content %}
+<h2>Membership Status: {% if user_profile.is_pssi_member %}{{ user_profile.membership_history.last.get_status_display }}{% else %}Not a Member{% endif %}</h2>
+{% if not user_profile.is_pssi_member %}
+Make the payment of Rs 600 to become a member for 2 years.
+
+<br> <br>
+<a href="https://www.instamojo.com/pssi/test-pssi-membership/?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="link" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a><script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
+
+{% endif %}
+<hr>
+<h3>Membership History</h3>
+<table class="table">
+    <thead>
+        <td>From</td>
+        <td>To</td>
+        <td>Payment Method</td>
+        <td>Amount</td>
+        <td>Status</td>
+    </thead>
+    <tbody>
+        {% for mship in membership_history %}
+        <tr>
+            <td>{{ mship.from_date|date:"d-M-Y" }}</td>
+            <td>{{ mship.to_date|date:"d-M-Y" }}</td>
+            <td>{{ mship.get_payment_method_display }}</td>
+            <td>{% if mship.payment %}{{ mship.payment.amount }}{% endif %}</td>
+            <td>{{ mship.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+<h3>Payment History</h3>
+<table class="table">
+    <thead>
+        <td>Payment Gateway</td>
+        <td>Date</td>
+        <td>Amount</td>
+        <td>Status(Payment Gateway)</td>
+        <td>Status(PSSI)</td>
+    </thead>
+    <tbody>
+        {% for payment in user.payment_set.all %}
+        <tr>
+            <td>{{ payment.gateway }}</td>
+            <td>{{ payment.created_at|date:"d-M-Y" }}</td>
+            <td>{{ payment.amount }}</td>
+            <td>{{ payment.status_pg }}</td>
+            <td>{{ payment.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock profile_content %}
