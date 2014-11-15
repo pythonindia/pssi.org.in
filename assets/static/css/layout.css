@@ -320,13 +320,13 @@ a.white:hover {
     color: #FFF;
 }
 .yellow {
-    color: #D5A952 !important;
+    color: #ffdd55 !important;
 }
 .fill-yellow {
     background-color: #D5A952;
 }
 .fill-blue {   
-    background-color: #2b5b84;
+    background-color: #2c5aa0;
 }
 .fill-white {   
     background-color: #FFF;
