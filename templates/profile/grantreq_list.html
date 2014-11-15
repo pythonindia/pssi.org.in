@@ -4,23 +4,26 @@
 {% block head_title %}Grant Requests - {{ block.super }}{% endblock %}
 
 {% block profile_content %}
-<h2>Grant Requests</h2>
-
-<table class="table">
+<h3>Grant Requests</h3>
+<table class="table fill-white card">
     <thead>
         <td>Grant Type</td>
         <td>Date Submitted</td>
         <td>Status</td>
     </thead>
     <tbody>
-        {% for grequest in grantrequest_list %}
-        <tr>
-            <td>{{ grequest.gtype }}</td>
-            <td>{{ grequest.created_at|date:"d-M-Y" }}</td>
-            <td>{{ grequest.get_status_display }}</td>
-        </tr>
-        {% endfor %}
+        {% if grantrequest_list %}
+            {% for grequest in grantrequest_list %}
+            <tr>
+                <td>{{ grequest.gtype }}</td>
+                <td>{{ grequest.created_at|date:"d-M-Y" }}</td>
+                <td>{{ grequest.get_status_display }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="5" class="text-center gray"><em>No grant requests</em></td></tr>
+        {% endif %}
     </tbody>
 </table>
-
+<p><a href="/grants/apply/" class="btn btn-primary">Apply for Financial Grants</a></p>
 {% endblock profile_content %}

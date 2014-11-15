@@ -322,11 +322,26 @@ a.white:hover {
 .yellow {
     color: #ffdd55 !important;
 }
+.blue {   
+    color: #2c5aa0;
+}
+.green {
+  color: #75c16a;
+}
+.red {
+  color: #a94442;
+}
+.gray{   
+    color: #CCC;
+}
 .fill-yellow {
-    background-color: #D5A952;
+    background-color: #ffdd55;
 }
 .fill-blue {   
     background-color: #2c5aa0;
+}
+.fill-blue-alt {   
+    background-color: #214478;
 }
 .fill-white {   
     background-color: #FFF;
@@ -336,6 +351,9 @@ a.white:hover {
 }
 .normal {
     font-weight: 400;
+}
+.card {
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 .center-wrapper {
@@ -386,21 +404,23 @@ footer {
   width: 0;
   height: 0;
 }
-.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] {
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email], .form-container input[type=url], .form-container textarea {
   border: 2px solid #CCC;
   padding: 0.5em 1em;
   width: 100%;
   border-radius: 0.3em;
 }
 button, .form-container input[type=submit] {
-  background: #2b5b84;
-  border: 0;
+  background: #ffdd55;
+  border: 1px solid #dabd42;
   border-radius: 0.3em;
-  color: #FFF;
-  padding: 0.3em 1.5em 0.5em 1.5em;
+  color: #7C6E0D;
+  padding: 0.3em 1.5em 0.4em 1.5em;
 }
 button:hover {
-  background: #3A6E99;
+  color: #695E13;
+  background-color: #dabd42;
+  border-color: #C2A737;
 }
 .flushright {
   float: right;

@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="row push-4">
+<div class="content row push-4">
   {% for post in post_list %}
     <h3><a href="{% url 'blog_post' post.slug %}">{{ post.title }}</a></h3>
     <div>{{ post.created_at }}</div><br>
