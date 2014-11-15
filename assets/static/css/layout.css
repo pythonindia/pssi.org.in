@@ -425,3 +425,16 @@ ul.errorlist li {
   padding: 0.5em 1em;
   margin-bottom: 1em;
 }
+
+.legible {
+  font-size: 1.5em;
+  line-height: 1.4em;
+}
+.legible-prose {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+.regular {
+  font-size: 1em;
+  line-height: 1.4em;
+}

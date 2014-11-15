@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head_title %}PyCon India - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Membership</h1>
+            <h2 class="white normal push-1q-bottom">Being part of PSSI allows you to make your voice heard and influence on the use and adoption of Python programming language in academic &amp; industrial areas.</h2>
+        </div>
+    </div>
+</header>
+{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="entry-content push-4-bottom">
+        <h3 class="push-1-top">How do I become a member of the PSSI ?</h3>
+        <p>In order to become a member of the PSSI you need to satisfy the following.</p>
+        <ul>
+            <li>You need to be an Indian citizen.</li>
+            <li>Pay a membership fee of INR 600/- to register yourself as a member for 2 years.</li>
+        </ul>
+
+        <h3 class="push-1-top">What are the benefits of being a PSSI member ?</h3>
+        <ol>
+            <li>Be able to attend the Annual General Meeting (AGM) every year and make your voice heard in
+            making the society policies and in the conduct and organization of PyCon India conference.</li>
+            <li>Be able to stand for elections to the PSSI board and influence changes from a position
+            of power.</li>
+            <li>Apart from these, PSSI provides a platform for exerting a very powerful influence on
+            the use and adoption of Python programming language in academic &amp; industrial areas. Being
+            part of PSSI allows you to make your voice heard and be a prominent part of this influence.</li>
+        </ol>
+        <p class="push-2">
+        	{% if user.is_authenticated %}
+        		<a href="/profile/membership/" class="btn btn-primary legible-prose">Manage Membership</a>
+        	{% else %}
+        		<a href="/accounts/login/" class="btn btn-primary legible-prose">Login or Register to continue</a>
+        	{% endif %}
+        </p>
+    </div>
+</section>
+{% endblock %}

@@ -10,6 +10,12 @@ urlpatterns = patterns(
     url(r'^$', TemplateView.as_view(
         template_name='index.html',
     ), name='home'),
+    url(r'^about/$', TemplateView.as_view(
+        template_name='about.html',
+    ), name='about-static'),
+    url(r'^membership/$', TemplateView.as_view(
+        template_name='membership.html',
+    ), name='membership-static'),
     url(r'^pyconindia/$', TemplateView.as_view(
         template_name='pyconindia.html',
     ), name='pyconindia-static'),

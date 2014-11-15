@@ -28,6 +28,7 @@ body {
 }
 .header-big {
     height: 18em;
+    width: 100%;
 }
 .masthead:after {
     background: rgba(43, 91, 132, 0.1);
@@ -147,3 +148,13 @@ a.socialaccount_provider.github:hover {
     padding-right: 0.4em;
 }
 
+.btn-primary {
+    background: #ffdd55;
+    color: #7C6E0D;
+    border-color: #dabd42;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {   
+    color: #695E13;
+    background-color: #dabd42;
+    border-color: #C2A737;
+}

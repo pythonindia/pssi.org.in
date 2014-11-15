@@ -59,13 +59,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'blog_archive' %}">About</a></li>
-                    <li><a href="{% url 'blog_archive' %}">Membership</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organization <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'about-static' %}">About</a></li>
+                            <li><a href="{% url 'awards-static' %}">Awards</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'membership-static' %}">Membership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programmes <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
-                            <li><a href="{% url 'awards-static' %}">Awards</a></li>
+                            <li><a href="http://www.pythonexpress.in/" target="_blank">Python Express</a></li>
                         </ul>
                     </li>
                     <li><a href="{% url 'blog_archive' %}">Blog</a></li>
