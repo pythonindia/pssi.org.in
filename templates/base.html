@@ -1,3 +1,5 @@
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,17 +11,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    <title>{% block head_title %}Python Software Society of India{% endblock head_title %}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/static/css/layout.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
-    <link href="/static/css/fonts.css" rel="stylesheet">
+    <link href="{% static 'css/layout.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/fonts.css' %}" rel="stylesheet">
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,6 +29,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+    {% block endhead %}
+    {% endblock %}
 
 </head>
 
@@ -48,16 +56,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'blog_archive' %}">Blog</a></li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programmes <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
+                        <li><a href="{% url 'awards-static' %}">Awards</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs"><i class="glyphicon glyphicon-user"></i></span><span class="visible-xs">Account</span> <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile_home' %}">Profile</a></li>
                         <li><a href="{% url 'socialaccount_connections' %}">Social Accounts</a></li>
                           {% if user.is_superuser or user.is_stuff %}
                             <li><a href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
@@ -103,11 +114,11 @@
     </footer>
     <!-- /.container -->
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="/static/js/jquery-1.11.0.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    {% block endbody %}
+    {% endblock %}
 
 </body>
 

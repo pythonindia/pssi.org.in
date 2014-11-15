@@ -1,17 +1,44 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block head_title %}Apply for Grant - {{ block.super }}{% endblock %}
+
+{% block endhead %}
+<style>
+  .required > label:after {
+    content: "*";
+  }
+</style>
+{% endblock %}
 
 {% block content %}
-<h2>Apply for financial grants</h2>
-<p>You can apply for 3 types of financial grant for now -
-  <ul>
-    <li>International Travel Grant</li>
-    <li>National Travel Grant</li>
-    <li>Workshop organizing related grant</li>
-  </ul>
-</p>
-<hr>
-<form action="." method="post">{% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 push-3">
+        <div class="form-container space-2-bottom">
+            <h2 class="fill-blue text-center">Apply for financial grants</h2>
+            <div class="pad-2 push-half-top push-2-bottom">
+
+              <p>You can apply for 3 types of financial grant for now -
+                <ul>
+                  <li>International Travel Grant</li>
+                  <li>National Travel Grant</li>
+                  <li>Workshop organizing related grant</li>
+                </ul>
+              </p>
+
+              <form class="apply_grants" method="POST" action=".">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %} Submit
+                    </button>
+                {% endbuttons %}
+              </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 {% endblock %}
