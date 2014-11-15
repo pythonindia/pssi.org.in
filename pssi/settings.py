@@ -29,6 +29,9 @@ ADMINS = (
     ('Kracekumar', 'me@kracekumar.com')
 )
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -49,11 +52,9 @@ INSTALLED_APPS = (
     'django_markdown',
     'bootstrap3',
 
-    'accounts',
     'board',
     'grants',
     'blogs',
-    'payments',
 )
 
 MIDDLEWARE_CLASSES = (

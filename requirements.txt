@@ -3,10 +3,8 @@ markdown==2.5.1
 django-allauth==0.18.0
 django-markdown==0.7.1
 django-bootstrap3==4.11.0
-django-pgjson==0.2.0
 oauthlib==0.6.3
 psycopg2==2.5.4
 python3-openid==3.0.4
 requests==2.4.3
 requests-oauthlib==0.4.1
-git+https://github.com/iambibhas/instamojo-py.git#egg=instamojo
