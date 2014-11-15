@@ -16,6 +16,9 @@ urlpatterns = patterns(
     url(r'^membership/$', TemplateView.as_view(
         template_name='membership.html',
     ), name='membership-static'),
+    url(r'^usergroups/$', TemplateView.as_view(
+        template_name='user_groups.html',
+    ), name='usergroups-static'),
     url(r'^pyconindia/$', TemplateView.as_view(
         template_name='pyconindia.html',
     ), name='pyconindia-static'),
