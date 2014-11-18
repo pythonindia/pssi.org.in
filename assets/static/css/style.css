@@ -179,16 +179,20 @@ a.socialaccount_provider.github:hover {
     width: 90%;
     margin: 0 auto;
 }
-.sidebar {/*
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    top: 0;*/
-    display: block;
-    height: 100%;
-    position: fixed;
-    width: 25%;
+@media (max-width: 768px) {
+    .sidebar {
+        margin-top: 1em;
+    }
 }
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+        height: 100%;
+        position: fixed;
+        width: 25%;
+    }   
+}
+
 
 .im-checkout {
     margin: 0 auto;
