@@ -1,29 +1,35 @@
 [
 {
+    "model": "grants.granttype",
     "fields": {
-        "updated_at": "2014-10-22T15:55:09.040Z",
-        "created_at": "2014-10-22T15:52:34.129Z",
-        "name": "International Travel Grant"
+        "name": "International Travel Grant",
+        "active": true,
+        "updated_at": "2014-11-19T17:37:04.538Z",
+        "terms": "PSSI is looking forward to support the Indian speakers who want to travel to events and deliver speech. A PSSI member can apply for a financial grant if they are travelling abroad to attend and speak at a Python related event/conference. PSSI will support total combined budget of Rs. 1,20,000 per year. Here are few things to remember before applying -\r\n\r\n1. A person can avail financial aid only once in a lifetime.\r\n2. The talk submitted at the event/conference has to be selected.\r\n3. Those who apply first will probably be accepted first but those who are applying for the first time will be given preference over those who have received the grant in past.\r\n4. Maximum amount provided for a person is INR 30,000.\r\n5. Amount will be deposited to bank account directly.\r\n6. Final decision will be taken by PSSI members.\r\n7. Amount will be paid post conference after submission of boarding pass.\r\n",
+        "created_at": "2014-10-22T15:52:34.129Z"
     },
-    "pk": 1,
-    "model": "grants.granttype"
+    "pk": 1
 },
 {
+    "model": "grants.granttype",
     "fields": {
-        "updated_at": "2014-10-22T15:55:03.787Z",
-        "created_at": "2014-10-22T15:55:03.787Z",
-        "name": "National Travel Grant"
+        "name": "National Travel Grant",
+        "active": false,
+        "updated_at": "2014-11-19T13:36:08.771Z",
+        "terms": "",
+        "created_at": "2014-10-22T15:55:03.787Z"
     },
-    "pk": 2,
-    "model": "grants.granttype"
+    "pk": 2
 },
 {
+    "model": "grants.granttype",
     "fields": {
-        "updated_at": "2014-10-22T15:55:37.467Z",
-        "created_at": "2014-10-22T15:55:37.467Z",
-        "name": "Workshop Grant"
+        "name": "Workshop Grant",
+        "active": false,
+        "updated_at": "2014-11-19T15:30:50.066Z",
+        "terms": "",
+        "created_at": "2014-10-22T15:55:37.467Z"
     },
-    "pk": 3,
-    "model": "grants.granttype"
+    "pk": 3
 }
 ]
