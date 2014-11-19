@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.views.generic.base import TemplateView
 from django.contrib import admin
 
-from grants.views import GreatRequestCreateView
+from grants.views import GrantRequestCreateView, GrantTypeListView
 
 urlpatterns = patterns(
     '',
@@ -26,7 +26,9 @@ urlpatterns = patterns(
         template_name='awards.html',
     ), name='awards-static'),
 
-    url(r'^grants/apply/$', GreatRequestCreateView.as_view(),
+    url(r'^grants/list/$', GrantTypeListView.as_view(),
+        name='grants_list'),
+    url(r'^grants/apply/(?P<gtype_id>[\d]+)/$', GrantRequestCreateView.as_view(),
         name='grants_apply'),
     url(r'^grants/apply-success/$', TemplateView.as_view(
         template_name='grants/apply_grants_success.html',
