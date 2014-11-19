@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'django_markdown',
     'bootstrap3',
 
+    'common',
     'accounts',
     'board',
     'grants',
