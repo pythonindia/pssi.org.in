@@ -3,7 +3,7 @@ html {
     font-size: 1em;
 }
 body {
-    padding-top: 5em; 
+    padding-top: 5em;
     font-family: 'Open Sans', sans-serif;
     background-color: #f5f5f5;
     color: #333;
@@ -153,7 +153,7 @@ a.socialaccount_provider.github:hover {
     color: #7C6E0D;
     border-color: #dabd42;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {   
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     color: #695E13;
     background-color: #dabd42;
     border-color: #C2A737;
@@ -190,7 +190,7 @@ a.socialaccount_provider.github:hover {
         height: 100%;
         position: fixed;
         width: 25%;
-    }   
+    }
 }
 
 
