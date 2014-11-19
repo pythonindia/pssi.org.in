@@ -64,6 +64,10 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'about-static' %}">About</a></li>
                             <li><a href="{% url 'awards-static' %}">Awards</a></li>
+                            {% if user.is_authenticated %}
+                                <li class="divider"></li>
+                                <li><a href="https://docs.google.com/document/d/11OP79kIDNfx9dMpbMztExp4W6amG0ZTZ0UNdGO54fPc/edit" target="_blank">By-laws</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                     <li><a href="{% url 'membership-static' %}">Membership</a></li>
