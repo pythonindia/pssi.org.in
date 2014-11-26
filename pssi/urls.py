@@ -25,6 +25,9 @@ urlpatterns = patterns(
     url(r'^awards/$', TemplateView.as_view(
         template_name='awards.html',
     ), name='awards-static'),
+    url(r'^by-laws/$', TemplateView.as_view(
+        template_name='by_laws.html',
+    ), name='by-laws'),
 
     url(r'^grants/list/$', GrantTypeListView.as_view(),
         name='grants_list'),
