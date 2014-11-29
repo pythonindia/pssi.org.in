@@ -42,7 +42,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
@@ -51,38 +51,57 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home' %}"><span class="yellow">PSSI</span><div style="font-size: 10px; text-transform:uppercase;"><span class="yellow">P</span>ython <span class="yellow">S</span>oftware <span class="yellow">S</span>ociety of <span class="yellow">I</span>ndia</div></a>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <!-- <span class="yellow">PSSI</span><div style="font-size: 10px; text-transform:uppercase;"><span class="yellow">P</span>ython <span class="yellow">S</span>oftware <span class="yellow">S</span>ociety of <span class="yellow">I</span>ndia</div> -->
+                    <img src="/static/images/pssi_logo.png" alt="PSSI">
+                </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="{% url 'blog_archive' %}">Blog</a></li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programmes <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
-                        <li><a href="{% url 'awards-static' %}">Awards</a></li>
-                      </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organization <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'about-static' %}">About</a></li>
+                            <li><a href="{% url 'awards-static' %}">Awards</a></li>
+                            {% if user.is_authenticated %}
+                                <li class="divider"></li>
+                                <li><a href="https://docs.google.com/document/d/11OP79kIDNfx9dMpbMztExp4W6amG0ZTZ0UNdGO54fPc/edit" target="_blank">By-laws</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'membership-static' %}">Membership</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programmes <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
+                            <li><a href="http://www.pythonexpress.in/" target="_blank">Python Express</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs"><i class="glyphicon glyphicon-user"></i></span><span class="visible-xs">Account</span> <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        {% if user.is_authenticated %}
-                        <li><a href="{% url 'profile_home' %}">Profile</a></li>
-                        <li><a href="{% url 'socialaccount_connections' %}">Social Accounts</a></li>
-                          {% if user.is_superuser or user.is_stuff %}
-                            <li><a href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
-                          {% endif %}
-                        <li class="divider"></li>
-
-                        <li><a href="{% url 'grants_apply' %}">Apply for Financial Grants</a></li>
-
-                        <li class="divider"></li>
-                        <li><a href="{% url 'account_logout' %}">Logout</a></li>
-                        {% else %}
-                        <li><a href="{% url 'account_login' %}">Login or Register</a></li>
-                        {% endif %}
-                      </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'usergroups-static' %}">Local User Groups</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'blog_archive' %}">Blog</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs"><i class="glyphicon glyphicon-user"></i></span><span class="visible-xs">Account</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'profile_home' %}">Profile</a></li>
+                                <li><a href="{% url 'socialaccount_connections' %}">Social Accounts</a></li>
+                                {% if user.is_superuser or user.is_stuff %}
+                                    <li><a href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
+                                {% endif %}
+                                <li class="divider"></li>
+                                <li><a href="{% url 'grants_list' %}">Apply for Financial Grants</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                            {% else %}
+                                <li><a href="{% url 'account_login' %}">Login or Register</a></li>
+                            {% endif %}
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -95,7 +114,7 @@
     {% endblock %}
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid">
 
         {% block content %}
         {% endblock %}
@@ -104,8 +123,8 @@
 
     <!-- Footer -->
     <footer class="fill-white">
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid">
+            <div class="row-fluid">
                 <div class="col-xs-12 text-center">
                     <p class="push-half-top">Copyright &copy; Python Software Society of India 2014</p>
                 </div>
@@ -117,8 +136,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    {% block endbody %}
-    {% endblock %}
+    {% block footerscripts %}{% endblock %}
 
 </body>
 

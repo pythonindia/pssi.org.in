@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
+{% load markdown_tags %}
 
 {% block head_title %}{{ post.title }} - {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="row">
-  <h2><a href="#">{{ post.title }}</a></h2>
-  <div>{{ post.created_at }}</div>
-  <hr>
-  <p id="post-body">
-  </p>
-  <hr>
-  <div>
-    This post was written with the tag(s) - {{ post.tags.all|join:", " }}
-  </div>
-</div>
-{% endblock %}
-
-{% block endbody %}
-<script type="text/javascript" src="{% static 'js/marked.js' %}"></script>
-<script type="text/javascript">
-  document.getElementById('post-body').innerHTML = marked('{{ post.body|escapejs }}');
-</script>
+ <section class="content">
+    <div class="push-4-bottom push-1-top">
+        <h2><a href="#">{{ post.title }}</a></h2>
+        <div>{{ post.created_at }}</div>
+        <hr>
+        <p>
+            {{ post.body|markdown2html|safe }}
+        </p>
+        <hr>
+        <div>
+            This post was written with the tag(s) - {{ post.tags.all|join:", " }}
+        </div>
+    </div>
+</section>
 {% endblock %}

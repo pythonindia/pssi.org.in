@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.views.generic.base import TemplateView
 from django.contrib import admin
 
-from grants.views import GreatRequestCreateView
+from grants.views import GrantRequestCreateView, GrantTypeListView
 
 urlpatterns = patterns(
     '',
@@ -10,6 +10,15 @@ urlpatterns = patterns(
     url(r'^$', TemplateView.as_view(
         template_name='index.html',
     ), name='home'),
+    url(r'^about/$', TemplateView.as_view(
+        template_name='about.html',
+    ), name='about-static'),
+    url(r'^membership/$', TemplateView.as_view(
+        template_name='membership.html',
+    ), name='membership-static'),
+    url(r'^usergroups/$', TemplateView.as_view(
+        template_name='user_groups.html',
+    ), name='usergroups-static'),
     url(r'^pyconindia/$', TemplateView.as_view(
         template_name='pyconindia.html',
     ), name='pyconindia-static'),
@@ -17,7 +26,9 @@ urlpatterns = patterns(
         template_name='awards.html',
     ), name='awards-static'),
 
-    url(r'^grants/apply/$', GreatRequestCreateView.as_view(),
+    url(r'^grants/list/$', GrantTypeListView.as_view(),
+        name='grants_list'),
+    url(r'^grants/apply/(?P<gtype_id>[\d]+)/$', GrantRequestCreateView.as_view(),
         name='grants_apply'),
     url(r'^grants/apply-success/$', TemplateView.as_view(
         template_name='grants/apply_grants_success.html',

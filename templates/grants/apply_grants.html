@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load markdown_tags %}
 
 {% block head_title %}Apply for Grant - {{ block.super }}{% endblock %}
 
@@ -16,23 +17,18 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 push-3">
         <div class="form-container space-2-bottom">
-            <h2 class="fill-blue text-center">Apply for financial grants</h2>
+            <h2 class="fill-blue text-center">Apply for {{ gtype.name }}</h2>
             <div class="pad-2 push-half-top push-2-bottom">
 
-              <p>You can apply for 3 types of financial grant for now -
-                <ul>
-                  <li>International Travel Grant</li>
-                  <li>National Travel Grant</li>
-                  <li>Workshop organizing related grant</li>
-                </ul>
-              </p>
+              {{ gtype.terms|markdown2html|safe }}
+              <hr>
 
               <form class="apply_grants" method="POST" action=".">
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 {% buttons %}
                     <button type="submit" class="btn btn-primary">
-                        {% bootstrap_icon "star" %} Submit
+                        Submit
                     </button>
                 {% endbuttons %}
               </form>

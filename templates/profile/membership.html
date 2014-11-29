@@ -3,58 +3,99 @@
 
 {% block head_title %}Membership Details - {{ block.super }}{% endblock %}
 
+{% block notifications %}{% endblock %}
+
 {% block profile_content %}
-<h2>Membership Status: {% if user_profile.is_pssi_member %}{{ user_profile.membership_history.last.get_status_display }}{% else %}Not a Member{% endif %}</h2>
-{% if not user_profile.is_pssi_member %}
-Make the payment of Rs 600 to become a member for 2 years.
+    <div class="row">
+        <div class="col-sm-12">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
 
-<br> <br>
-<a href="https://www.instamojo.com/pssi/test-pssi-membership/?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="link" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a><script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
 
-{% endif %}
-<hr>
-<h3>Membership History</h3>
-<table class="table">
-    <thead>
-        <td>From</td>
-        <td>To</td>
-        <td>Payment Method</td>
-        <td>Amount</td>
-        <td>Status</td>
-    </thead>
-    <tbody>
-        {% for mship in membership_history %}
-        <tr>
-            <td>{{ mship.from_date|date:"d-M-Y" }}</td>
-            <td>{{ mship.to_date|date:"d-M-Y" }}</td>
-            <td>{{ mship.get_payment_method_display }}</td>
-            <td>{% if mship.payment %}{{ mship.payment.amount }}{% endif %}</td>
-            <td>{{ mship.get_status_display }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<hr>
-<h3>Payment History</h3>
-<table class="table">
-    <thead>
-        <td>Payment Gateway</td>
-        <td>Date</td>
-        <td>Amount</td>
-        <td>Status(Payment Gateway)</td>
-        <td>Status(PSSI)</td>
-    </thead>
-    <tbody>
-        {% for payment in user.payment_set.all %}
-        <tr>
-            <td>{{ payment.gateway }}</td>
-            <td>{{ payment.created_at|date:"d-M-Y" }}</td>
-            <td>{{ payment.amount }}</td>
-            <td>{{ payment.status_pg }}</td>
-            <td>{{ payment.get_status_display }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            <h3>Membership Status:
+            {% if user_profile.is_pssi_member %}
+                <span class="green">{{ user_profile.membership_history.last.get_status_display }}</span>
+            {% else %}
+                <span class="red">Not a Member</span>
+            {% endif %}
+            </h3>
+        </div>
+        <div class="col-sm-12">
+            {% if not user_profile.is_pssi_member %}
+                <div class="fill-white card text-center">
+                    <p class="legible-prose fill-yellow push-half pad-1">Make the payment of <strong>Rs 600</strong> to become a member for 2 years.</p>
+                    <p class="pad-1 push-1q-bottom push-half-top">
+                        <div>
+                            Please read the <a href="{% url 'membership-static' %}" target="_blank">Membership</a> page and the <a href="https://docs.google.com/document/d/11OP79kIDNfx9dMpbMztExp4W6amG0ZTZ0UNdGO54fPc/edit" target="_blank">By-laws of PSSI</a> before making any payment and applying for membership. <br><br>
 
+                            Things to remember before making the payment -
+
+                            <ul>
+                                <li>Use the same email address while paying which you have registered with us</li>
+                                <li>After the payment is done, your membership will show as "Under Review". For security purposes we may ask you to upload additional indentification documents before accepting the membership</li>
+                                <li>Just in case your membership is not accepted, we'll refund the payment within 30 days</li>
+                            </ul>
+                        </div>
+                        <a href="https://www.instamojo.com/pssi/test-pssi-membership/?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="link" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a>
+                    </p>
+                    <script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <h3 class="legible">Membership History</h3>
+    <table class="table fill-white card">
+        <thead>
+            <td>From</td>
+            <td>To</td>
+            <td>Payment Method</td>
+            <td>Amount</td>
+            <td>Status</td>
+        </thead>
+        <tbody>
+            {% if membership_history %}
+                {% for mship in membership_history %}
+                <tr>
+                    <td>{{ mship.from_date|date:"d-M-Y" }}</td>
+                    <td>{{ mship.to_date|date:"d-M-Y" }}</td>
+                    <td>{{ mship.get_payment_method_display }}</td>
+                    <td>{% if mship.payment %}{{ mship.payment.amount }}{% endif %}</td>
+                    <td>{{ mship.get_status_display }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="5" class="text-center gray"><em>No membership history</em></td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <hr>
+    <h3 class="legible">Payment History</h3>
+    <table class="table fill-white card">
+        <thead>
+            <td>Payment Gateway</td>
+            <td>Date</td>
+            <td>Amount</td>
+            <td>Status(Payment Gateway)</td>
+            <td>Status(PSSI)</td>
+        </thead>
+        <tbody>
+            {% if user.payment_set.all %}
+                {% for payment in user.payment_set.all %}
+                <tr>
+                    <td>{{ payment.gateway }}</td>
+                    <td>{{ payment.created_at|date:"d-M-Y" }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.status_pg }}</td>
+                    <td>{{ payment.get_status_display }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="5" class="text-center gray"><em>No payment history</em></td></tr>
+            {% endif %}
+        </tbody>
+    </table>
 {% endblock profile_content %}

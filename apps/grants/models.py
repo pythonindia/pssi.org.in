@@ -12,6 +12,11 @@ GRANT_STATUS_CHOICES = (
 
 class GrantType(BaseModel):
     name = models.CharField(max_length=100, unique=True)
+    terms = models.TextField("Terms & Conditions", blank=True, null=True)
+    active = models.BooleanField(
+        "Whether this grant type should be available to public",
+        default=True
+    )
 
     def __str__(self):
         return self.name

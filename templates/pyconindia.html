@@ -2,11 +2,21 @@
 
 {% block head_title %}PyCon India - {{ block.super }}{% endblock %}
 
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">PyCon India</h1>
+            <h2 class="white normal push-1q-bottom">India's premier conference on Python programming language</h2>
+            <p class="push-1-top"><a target="_blank" href="http://in.pycon.org/" class="btn btn-primary">Pycon website</a></p>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
 {% block content %}
 <section class="content">
-	<div class="entry-content push-4-bottom">
-		<h1>PyCon India <a href="http://in.pycon.org" target="_blank"><span class="glyphicon glyphicon-link small yellow"></span></a></h1>
-		<hr>
+	<div class="entry-content push-4-bottom push-2-top">
 		<p class="push-1-top">PyCon India is the premier conference in India on using and developing the Python programming language is conducted annually by the Python developer community. It attracts the best Python programmers from across the country and abroad.</p>
 		<h3 class="push-1-top">Conference Host City</h3>
 		<p>There was an original policy of  trying to conduct PyCon India every year in a different city. We had conducted

@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.views.generic.base import RedirectView, View
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.contrib import messages
 
 from common.views import CSRFExemptMixin, LoginRequiredMixin
 from .models import (Payment, PaymentGateway, PaymentType)
@@ -63,7 +64,11 @@ class MembershipPaymentConfirmView(LoginRequiredMixin, RedirectView):
                 payment=payment
             )
             membership.save()
+            messages.info(
+                self.request, 'Your payment has been successfully received.')
             return reverse('profile_membership') + "?status=success"
         # else show error
         else:
+            messages.info(
+                self.request, 'Something went wrong when processing your payment. Please contact us at contact@pssi.org.in')
             return reverse('profile_membership') + "?status=fail"
