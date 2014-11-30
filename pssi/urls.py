@@ -28,6 +28,9 @@ urlpatterns = patterns(
     url(r'^by-laws/$', TemplateView.as_view(
         template_name='by_laws.html',
     ), name='by-laws'),
+    url(r'^financial/$', TemplateView.as_view(
+        template_name='financial.html',
+    ), name='financial'),
 
     url(r'^grants/list/$', GrantTypeListView.as_view(),
         name='grants_list'),
