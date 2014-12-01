@@ -1,5 +1,5 @@
-from django.forms import ModelForm, ModelChoiceField, CharField
-from .models import GrantRequest, GrantType
+from django.forms import ModelForm
+from .models import GrantRequest
 
 
 class GrantRequestForm(ModelForm):

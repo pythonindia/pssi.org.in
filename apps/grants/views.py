@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import get_object_or_404
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from django.core.urlresolvers import reverse_lazy
+
+from common import emailer
+
 from .models import GrantRequest, GrantType
 from .forms import GrantRequestForm
 
@@ -29,7 +34,11 @@ class GrantRequestCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        user = self.request.user
+        form.instance.user = user
         form.instance.status = 'p'
         form.instance.gtype_id = self.kwargs.get('gtype_id')
+        # Send email to user and staff
+        emailer.send_new_grant_email(user=user,
+                                     instance=form.instance)
         return super(GrantRequestCreateView, self).form_valid(form)
