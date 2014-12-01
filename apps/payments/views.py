@@ -8,7 +8,7 @@ from django.contrib import messages
 
 from common.views import CSRFExemptMixin, LoginRequiredMixin
 from .models import (Payment, PaymentGateway, PaymentType)
-from accounts.models import Membership, UserProfile
+from accounts.models import Membership, UserProfile, MembershipApplication
 
 from instamojo import Instamojo
 
@@ -54,9 +54,7 @@ class MembershipPaymentConfirmView(LoginRequiredMixin, RedirectView):
         # if success create membership instance
         if success:
             now = timezone.now()
-            profile, created = UserProfile.objects.get_or_create(
-                user_id=self.request.user.pk
-            )
+            profile = self.request.user.profile
             membership = Membership(
                 profile=profile,
                 from_date=now,
@@ -64,6 +62,11 @@ class MembershipPaymentConfirmView(LoginRequiredMixin, RedirectView):
                 payment=payment
             )
             membership.save()
+
+            membershipapplication = profile.membershipapplication
+            membershipapplication.status = 'a'
+            membershipapplication.save()
+
             messages.info(
                 self.request, 'Your payment has been successfully received.')
             return reverse('profile_membership') + "?status=success"

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Membership
+from .models import UserProfile, Membership, MembershipApplication
 
 
 class MembershipAdmin(admin.ModelAdmin):
@@ -12,5 +12,22 @@ class MembershipAdmin(admin.ModelAdmin):
     get_username.admin_order_field = 'profile__user__username'
 
 
+class MembershipApplicationAdmin(admin.ModelAdmin):
+    model = MembershipApplication
+    list_display = ('get_username', 'created_at', 'get_status_display')
+    readonly_fields = ('profile', 'show_url')
+
+    def get_username(self, obj):
+        return obj.profile.user.username
+    get_username.short_description = 'User'
+    get_username.admin_order_field = 'profile__user__username'
+
+    def show_url(self, instance):
+        return '<a target="_blank" href="%s">%s</a>' % ('/admin/accounts/userprofile/%d/' % instance.profile.pk, 'Go to profile')
+    show_url.short_description = 'User Profile Details'
+    show_url.allow_tags = True
+
+
 admin.site.register(Membership, MembershipAdmin)
+admin.site.register(MembershipApplication, MembershipApplicationAdmin)
 admin.site.register([UserProfile])

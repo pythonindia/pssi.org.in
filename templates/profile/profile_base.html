@@ -13,14 +13,29 @@
         <div class="col-sm-9 push-1-top">
             {% block notifications %}
                 {% if not user_profile.is_pssi_member %}
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">You're not a PSSI member!</h3>
+                    {% if not user_profile.membershipapplication %}
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">You're not a PSSI member!</h3>
+                            </div>
+                            <div class="panel-body">
+                                Please fill up *all* the details on the <a href="{% url 'profile_home' %}">profile page</a> and apply to be a member. We need to know a little bit about you. Incomplete profiles may not be accepted. <br>
+                                Please read the <a href="https://docs.google.com/document/d/11OP79kIDNfx9dMpbMztExp4W6amG0ZTZ0UNdGO54fPc/edit" target="_blank">By-laws of PSSI</a> before making any payment and applying for membership.
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url 'profile_membership_apply' %}" method="post">{% csrf_token %} <input class="btn btn-primary" type="submit" value="Apply to be a Member"> </form>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            Please make the <a href="{% url 'profile_membership' %}">payment</a> and become member for 2 years.
+                    {% else %}
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">You've applied to be a PSSI member!</h3>
+                            </div>
+                            <div class="panel-body">
+                                Please check the <a href="{% url 'profile_membership' %}">membership</a> page for more details.
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endif %}
             {% endblock %}
 

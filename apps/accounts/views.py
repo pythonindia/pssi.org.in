@@ -1,9 +1,12 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
-from django.core.urlresolvers import reverse_lazy
+from django.views.generic import View
+from django.core.urlresolvers import reverse_lazy, reverse
+from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
-from .models import UserProfile, Membership
+from django.contrib import messages
+from .models import UserProfile, Membership, MembershipApplication
 from .forms import UserProfileForm
 from common.views import LoginRequiredMixin
 from grants.models import GrantRequest
@@ -50,15 +53,35 @@ class GrantRequestListView(LoginRequiredMixin, ListView):
         return self.request.user.grantrequest_set.all()
 
 
+class MembershipApplyView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        application, created = MembershipApplication.objects.get_or_create(
+            profile__user_id=self.request.user.pk
+        )
+
+        if created:
+            messages.info(
+                self.request, 'We have received the application.')
+        else:
+            messages.info(
+                self.request, 'You have already applied.')
+
+        return redirect(reverse('profile_membership'))
+
+
 class MembershipView(LoginRequiredMixin, ListView):
     model = Membership
     template_name = 'profile/membership.html'
     context_object_name = 'membership_history'
 
     def get_queryset(self):
-        return self.request.user.profile.membership_history.all()
+        profile, created = UserProfile.objects.get_or_create(
+            user_id=self.request.user.pk
+        )
+        return profile.membership_history.all().select_related()
 
     def get_context_data(self, **kwargs):
         context = super(MembershipView, self).get_context_data(**kwargs)
         context['user_profile'] = self.request.user.profile
+        context['payment_history'] = self.request.user.payment_set.all().select_related()
         return context
