@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.contrib import messages
 
 from common.views import CSRFExemptMixin, LoginRequiredMixin
+from common import emailer
 from .models import (Payment, PaymentGateway, PaymentType)
 from accounts.models import Membership, UserProfile, MembershipApplication
 
@@ -69,6 +70,10 @@ class MembershipPaymentConfirmView(LoginRequiredMixin, RedirectView):
 
             messages.info(
                 self.request, 'Your payment has been successfully received.')
+
+            # send email to staff and user
+            emailer.send_payment_confirmation_email(
+                user=self.request.user, instance=payment)
             return reverse('profile_membership') + "?status=success"
         # else show error
         else:

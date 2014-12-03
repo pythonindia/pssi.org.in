@@ -40,6 +40,7 @@ FOOTER = """
 
 GRANT_MESSAGE = ''.join([MESSAGE, GRANT_DATA, FOOTER])
 APLLICATION_MESSAGE = ''.join([MESSAGE, FOOTER])
+PAYMENT_SUCCESS_MESSAGE = ''.join([MESSAGE, FOOTER])
 
 
 def send_new_grant_email(user, instance):
@@ -86,6 +87,11 @@ def send_new_membership_email(user):
     """
     _send_new_membership_to_user(user)
     _send_new_membership_to_staff(user)
+
+
+def send_payment_confirmation_email(user, instance):
+    _send_payment_confirmation_email_to_user(user, instance)
+    _send_payment_confirmation_email_to_staff(user, instance)
 
 
 # Private functions
@@ -140,3 +146,23 @@ def _send_new_membership_to_user(user):
     """
     message = APLLICATION_MESSAGE.format(first_name=user.first_name, body=body)
     return _send_mail(subject, message, recipient_list=[user.email])
+
+
+def _send_payment_confirmation_email_to_user(user, instance):
+    subject = 'PSSI membership payment successful'
+    body = """
+    Your payment of Rs.{amount} is successfully received.
+    """.format(amount=instance.amount)
+    message = PAYMENT_SUCCESS_MESSAGE.format(first_name=user.first_name,
+                                             body=body)
+    return _send_mail(subject, message, recipient_list=[user.email])
+
+
+def _send_payment_confirmation_email_to_staff(user, instance):
+    subject = 'PSSI membership payment successful'
+    body = """
+    {first_name}'s membership payment of {amount} successfully received.""".format(
+        first_name=user.first_name, amount=instance.amount)
+    message = PAYMENT_SUCCESS_MESSAGE.format(first_name=user.first_name,
+                                             body=body)
+    return _send_mail(subject, message, recipient_list=get_all_staff_emails())

@@ -63,15 +63,6 @@ class MembershipApplication(BaseModel):
                                                self.get_status_display())
 
 
-# @receiver(pre_save, sender=MembershipApplication)
-# def membership_application_approved(sender, **kwargs):
-#     application = sender.objects.get(pk=kwargs.get('instance').pk)
-
-#     if application.status == 'u' and kwargs.get('instance').status == 'a':
-#         # FIXME: Send mail to user
-#         print('application approved')
-
-
 class Membership(BaseModel):
     PAYMENT_METHOD_CHOICES = (
         ('on', 'Online'),
@@ -96,17 +87,10 @@ class Membership(BaseModel):
         )
 
 
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_profile(sender, **kwargs):
-#     if kwargs['created'] is True:
-#         try:
-#             UserProfile.objects.create(user_id=kwargs['instance'].id)
-#         except DatabaseError:
-#             pass
-
-
-# @receiver(post_save, sender=Membership)
-# def create_membership(sender, **kwargs):
-#     if kwargs['created'] is True:
-#         # FIXME: Send mail to staffs
-#         pass
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_profile(sender, **kwargs):
+    if kwargs['created'] is True:
+        try:
+            UserProfile.objects.create(user_id=kwargs['instance'].id)
+        except DatabaseError:
+            pass
