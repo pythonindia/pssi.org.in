@@ -50,13 +50,33 @@ def send_new_grant_email(user, instance):
 
 
 def send_update_grant_email(user, instance):
-    subject = "PSSI Grant Request Update: {}".format(instance.gtype.name)
+    subject = "PSSI grant request update: {}".format(instance.gtype.name)
     message = """
     Hi {first_name}
 
     Your grant request is {status}.
     """.format(first_name=user.first_name,
                status=instance.get_status_display().lower())
+    return _send_mail(subject=subject, message=message,
+                      recipient_list=[user.email])
+
+
+def send_update_membership_email(user, instance):
+    subject = "PSSI membership update"
+    if instance.status == 'a':
+        payment_message = "Your membership will be complete after making payment."\
+                          "Click here {} to make the payment.".format(
+                              settings.MEMBERSHIP_PAYMENT_LINK)
+    else:
+        payment_message = ""
+
+    message = """
+    Hi {first_name}
+
+    Your membership is {status}. {payment_message}
+    """.format(first_name=user.first_name,
+               status=instance.get_status_display().lower(),
+               payment_message=payment_message)
     return _send_mail(subject=subject, message=message,
                       recipient_list=[user.email])
 
@@ -79,7 +99,7 @@ def _send_mail(subject, message, recipient_list):
 
 
 def _send_grant_email_to_user(user, instance):
-    subject = "PSSI New Grant Request: {}".format(instance.gtype.name)
+    subject = "PSSI new grant request: {}".format(instance.gtype.name)
     body = """
     Your grant request for amount {amount} is submitted. You'll receive an
     email soon with the status. You can also login into the site and
@@ -92,7 +112,7 @@ def _send_grant_email_to_user(user, instance):
 
 
 def _send_grant_email_to_staff(user, instance):
-    subject = "PSSI New Grant Request: {}".format(instance.gtype.name)
+    subject = "PSSI new grant request: {}".format(instance.gtype.name)
     body = """
     {first_name} has submitted grant request for amount: {amount} """.format(
         first_name=user.first_name, amount=instance.amount)
@@ -104,7 +124,7 @@ def _send_grant_email_to_staff(user, instance):
 
 
 def _send_new_membership_to_staff(user):
-    subject = 'PSSI New Membership Request'
+    subject = 'PSSI new membership request'
     body = """
     {first_name} has submitted application to become PSSI member""".format(
         first_name=user.first_name)
@@ -113,7 +133,7 @@ def _send_new_membership_to_staff(user):
 
 
 def _send_new_membership_to_user(user):
-    subject = 'PSSI New Membership Request'
+    subject = 'PSSI new membership request'
     body = """
     Your request to become PSSI member is received. We are processing it and
     email will be sent with the updated status.

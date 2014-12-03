@@ -45,7 +45,8 @@ class UserProfile(BaseModel):
 class MembershipApplication(BaseModel):
     APPLICATION_STATUS_CHOICES = (
         ('u', 'Under Review'),
-        ('a', 'Approved')
+        ('a', 'Approved'),
+        ('r', 'Rejected'),
     )
 
     profile = models.OneToOneField(

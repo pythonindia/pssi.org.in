@@ -184,6 +184,9 @@ LOGGING = {
 
 SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
 
+# Instamojo (payemnt) link
+
+MEMBERSHIP_PAYMENT_LINK = ''
 # Override settings from local_settings.py
 try:
     from pssi.local_settings import *
