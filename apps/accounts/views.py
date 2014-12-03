@@ -1,4 +1,4 @@
-from django.views.generic.base import TemplateView
+# -*- coding: utf-8 -*-
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic import View
@@ -8,8 +8,10 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .models import UserProfile, Membership, MembershipApplication
 from .forms import UserProfileForm
-from common.views import LoginRequiredMixin
+
 from grants.models import GrantRequest
+from common.views import LoginRequiredMixin
+from common import emailer
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):
@@ -55,13 +57,15 @@ class GrantRequestListView(LoginRequiredMixin, ListView):
 
 class MembershipApplyView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
+        user = self.request.user
         application, created = MembershipApplication.objects.get_or_create(
-            profile__user_id=self.request.user.pk
-        )
+            profile=user.profile)
 
         if created:
             messages.info(
                 self.request, 'We have received the application.')
+            # Send email to user and staff
+            emailer.send_new_membership_email(user=user)
         else:
             messages.info(
                 self.request, 'You have already applied.')

@@ -56,21 +56,19 @@ class MembershipApplication(BaseModel):
         choices=APPLICATION_STATUS_CHOICES, default='u'
     )
 
-
-@receiver(post_save, sender=MembershipApplication)
-def membership_application_created(sender, **kwargs):
-    if kwargs['created'] is True:
-        # FIXME: Send mail to staffs
-        pass
+    def __str__(self):
+        return "<{} of {}, status: {}>".format(self.__class__.__name__,
+                                               self.profile,
+                                               self.get_status_display())
 
 
-@receiver(pre_save, sender=MembershipApplication)
-def membership_application_approved(sender, **kwargs):
-    application = sender.objects.get(pk=kwargs.get('instance').pk)
+# @receiver(pre_save, sender=MembershipApplication)
+# def membership_application_approved(sender, **kwargs):
+#     application = sender.objects.get(pk=kwargs.get('instance').pk)
 
-    if application.status == 'u' and kwargs.get('instance').status == 'a':
-        # FIXME: Send mail to user
-        print('application approved')
+#     if application.status == 'u' and kwargs.get('instance').status == 'a':
+#         # FIXME: Send mail to user
+#         print('application approved')
 
 
 class Membership(BaseModel):
@@ -97,17 +95,17 @@ class Membership(BaseModel):
         )
 
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_profile(sender, **kwargs):
-    if kwargs['created'] is True:
-        try:
-            UserProfile.objects.create(user_id=kwargs['instance'].id)
-        except DatabaseError:
-            pass
+# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+# def create_profile(sender, **kwargs):
+#     if kwargs['created'] is True:
+#         try:
+#             UserProfile.objects.create(user_id=kwargs['instance'].id)
+#         except DatabaseError:
+#             pass
 
 
-@receiver(post_save, sender=Membership)
-def create_membership(sender, **kwargs):
-    if kwargs['created'] is True:
-        # FIXME: Send mail to staffs
-        pass
+# @receiver(post_save, sender=Membership)
+# def create_membership(sender, **kwargs):
+#     if kwargs['created'] is True:
+#         # FIXME: Send mail to staffs
+#         pass
