@@ -2,6 +2,13 @@
 
 """File contains small function responsible for sending email to various
 third parties.
+
+# Note:
+
+Code can have been organized into single function say `send_email(user, instance, type)`,
+where `type` is the type of the email, then
+function will have `if, elif` block. Depending on type, call separate function.
+I wasn't quite happy with that approach. In future maintainer can feel free to rewrite.
 """
 
 from django.core.mail import send_mail
