@@ -32,8 +32,22 @@ GRANT_MESSAGE = """
 
 
 def send_new_grant_email(user, instance):
+    """Send email to user and staff when grant is submitted.
+    """
     _send_grant_email_to_user(user, instance)
     _send_grant_email_to_staff(user, instance)
+
+
+def send_update_grant_email(user, instance):
+    subject = "PSSI Grant Request Update: {}".format(instance.gtype.name)
+    message = """
+    Hi {first_name}
+
+    Your grant request is {status}.
+    """.format(first_name=user.first_name,
+               status=instance.get_status_display().lower())
+    return _send_mail(subject=subject, message=message,
+                      recipient_list=[user.email])
 
 
 # Private functions
