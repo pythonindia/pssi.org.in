@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load markdown_tags %}
+
+{% block head_title %}Grants - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Grants</h1>
+            <h2 class="white normal push-1q-bottom">Financial grants provided by PSSI</h2>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="push-4-bottom push-1-top">
+        {% for grant in grants_list %}
+            <h2>{{ grant.name }}</h2>
+            <p>{{ grant.terms|markdown2html|safe }}</p>
+            <a href="{% url 'grants_apply' grant.pk %}" class="btn btn-primary btn-lg active">Apply for {{ grant.name }}</a>
+            <hr>
+        {% endfor %}
+    </div><!-- /.entry-content -->
+</section>
+{% endblock %}

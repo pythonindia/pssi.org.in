@@ -2,10 +2,19 @@
 
 {% block head_title %}Blog posts - {{ block.super }}{% endblock %}
 
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Blog</h1>
+            <h2 class="white normal push-1q-bottom">Latest news from PSSI</h2>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
 {% block content %}
-<div class="row">
-  <h2>Blog Posts</h2>
-  <hr>
+<div class="content row push-4">
   {% for post in post_list %}
     <h3><a href="{% url 'blog_post' post.slug %}">{{ post.title }}</a></h3>
     <div>{{ post.created_at }}</div><br>
@@ -14,7 +23,7 @@
     </p>
     <hr>
   {% empty %}
-    <p>We're yet to write any blog post.</p>
+    <p class="text-center">We're yet to write any blog post.</p>
   {% endfor %}
 </div>
 {% endblock %}

@@ -9,5 +9,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = (
-            'first_name', 'last_name', 'about', 'github_url', 'bitbucket_url'
+            'first_name', 'last_name', 'profession', 'about',
+            'github_url', 'bitbucket_url', 'twitter_url',
+            'learned_about_pssi'
         )

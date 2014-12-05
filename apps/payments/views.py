@@ -4,10 +4,12 @@ from datetime import timedelta
 from django.views.generic.base import RedirectView, View
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.contrib import messages
 
 from common.views import CSRFExemptMixin, LoginRequiredMixin
+from common import emailer
 from .models import (Payment, PaymentGateway, PaymentType)
-from accounts.models import Membership, UserProfile
+from accounts.models import Membership, UserProfile, MembershipApplication
 
 from instamojo import Instamojo
 
@@ -53,9 +55,7 @@ class MembershipPaymentConfirmView(LoginRequiredMixin, RedirectView):
         # if success create membership instance
         if success:
             now = timezone.now()
-            profile, created = UserProfile.objects.get_or_create(
-                user_id=self.request.user.pk
-            )
+            profile = self.request.user.profile
             membership = Membership(
                 profile=profile,
                 from_date=now,
@@ -63,7 +63,20 @@ class MembershipPaymentConfirmView(LoginRequiredMixin, RedirectView):
                 payment=payment
             )
             membership.save()
+
+            membershipapplication = profile.membershipapplication
+            membershipapplication.status = 'a'
+            membershipapplication.save()
+
+            messages.info(
+                self.request, 'Your payment has been successfully received.')
+
+            # send email to staff and user
+            emailer.send_payment_confirmation_email(
+                user=self.request.user, instance=payment)
             return reverse('profile_membership') + "?status=success"
         # else show error
         else:
+            messages.info(
+                self.request, 'Something went wrong when processing your payment. Please contact us at contact@pssi.org.in')
             return reverse('profile_membership') + "?status=fail"

@@ -1,57 +1,53 @@
 {% extends 'base.html' %}
 
-{% block endhead %}
-<style>
-    /* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
-}
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-}
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
-}
-</style>
-{% endblock endhead %}
-
 {% block content %}
-<div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li><a href="{% url 'profile_home' %}">Profile</a></li>
-        <li><a href="{% url 'profile_grantreq_list' %}">Grant Requests</a></li>
-        <li><a href="{% url 'profile_membership' %}">Membership</a></li>
-      </ul>
-      <!-- <ul class="nav nav-sidebar">
-        <li><a href="">Nav item</a></li>
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
-        <li><a href="">More navigation</a></li>
-      </ul> -->
-    </div>
-    <div class="col-sm-9 col-md-10 main">
-        {% if not user_profile.is_pssi_member %}
-            <div class="alert alert-danger" role="alert">
-                You're not a PSSI member! Please make the <a href="{% url 'profile_membership' %}">payment</a> and become member for 2 years.
-            </div>
-        {% endif %}
+<section class="push-4-bottom">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="nav nav-sidebar fill-blue sidebar">
+                <li><a href="{% url 'profile_home' %}">Profile</a></li>
+                <li><a href="{% url 'profile_grantreq_list' %}">Grant Requests</a></li>
+                <li><a href="{% url 'profile_membership' %}">Membership</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 push-1-top">
+            {% block notifications %}
+                {% if not user_profile.is_pssi_member %}
+                    {% if not user_profile.membershipapplication %}
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">You're not a PSSI member!</h3>
+                            </div>
+                            <div class="panel-body">
+                                Please fill up *all* the details on the <a href="{% url 'profile_home' %}">profile page</a> and apply to be a member. We need to know a little bit about you. Incomplete profiles may not be accepted. <br>
+                                Please read the <a href="https://docs.google.com/document/d/11OP79kIDNfx9dMpbMztExp4W6amG0ZTZ0UNdGO54fPc/edit" target="_blank">By-laws of PSSI</a> before making any payment and applying for membership.
+                            </div>
+                            <div class="panel-body">
+                                <form action="{% url 'profile_membership_apply' %}" method="post">{% csrf_token %} <input class="btn btn-primary" type="submit" value="Apply to be a Member"> </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">You've applied to be a PSSI member!</h3>
+                            </div>
+                            <div class="panel-body">
+                                Please check the <a href="{% url 'profile_membership' %}">membership</a> page for more details.
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
 
-        {% block profile_content %}
-        {% endblock profile_content %}
+            {% block profile_content %}
+            {% endblock profile_content %}
+        </div>
     </div>
-</div>
+</section>
 {% endblock content %}
 
-{% block endbody %}
-<script type="text/javascript">
-    $('a[href="{{ request.path }}"]').parent("li").addClass('active');
-</script>
-{% endblock endbody %}
+{% block footerscripts %}
+    <script type="text/javascript">
+        $('a[href="{{ request.path }}"]').parent("li").addClass('active');
+    </script>
+{% endblock footerscripts %}
