@@ -38,7 +38,7 @@
                                 <li>Use the same email address while paying which you have registered with us</li>
                             </ul>
                         </div>
-                        <a href="https://www.instamojo.com/pssi/test-pssi-membership/?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="link" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a>
+                        <a href="{{ payment_url }}?data_name={{ user.get_full_name }}&data_email={{ user.email }}&data_readonly=data_email" rel="im-checkout" data-behavior="link" data-style="flat" data-text="Pay with Instamojo" data-token="4ede82e81e6ab17223946f0f4d032cfa"></a>
                     </p>
                     <script src="https://d2xwmjc4uy2hr5.cloudfront.net/im-embed/im-embed.min.js"></script>
                 </div>
