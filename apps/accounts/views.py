@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+from django.conf import settings
+
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views.generic import View
@@ -88,4 +91,5 @@ class MembershipView(LoginRequiredMixin, ListView):
         context = super(MembershipView, self).get_context_data(**kwargs)
         context['user_profile'] = self.request.user.profile
         context['payment_history'] = self.request.user.payment_set.all().select_related()
+        context['payment_url'] = settings.MEMBERSHIP_PAYMENT_LINK
         return context
