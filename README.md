@@ -30,3 +30,8 @@ Configuring Django-allauth
 
  - Go to `/admin/` > Sites and change the default site's(the one with ID = 1) name and display to `localhost:8000` or whatever you use to develop locally.
  - Go to `Social Applications` in admin panel and add [Github](http://django-allauth.readthedocs.org/en/latest/providers.html#github) and [Google](http://django-allauth.readthedocs.org/en/latest/providers.html#google)'s auth details
+
+Payment Link
+---
+
+- Add `MEMBERSHIP_PAYMENT_LINK` in `local_settings.py` for testing Rs 0 payemnt. Url is `https://www.instamojo.com/pssi/test-pssi-membership/`.
