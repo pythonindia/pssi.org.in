@@ -49,4 +49,4 @@ urlpatterns = patterns(
     url(r'^markdown/', include('django_markdown.urls')),
 )
 
-handler404 = 'grants.views.error404'
+handler404 = 'common.views.error404'
