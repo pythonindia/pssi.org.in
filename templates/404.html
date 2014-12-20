@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head_title %}404 Error- {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">404: Page not found</h1>
+            <h2 class="white normal push-1q-bottom">Requested page or URL cannot be found on this server. But you can checkout our <b><a class="white" href="/" target="_blank">Home Page</a></b>
+            or use above navbar.</h2>
+        </div>
+    </div>
+</header>
+{% endblock %}
