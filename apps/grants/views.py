@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from django.core.urlresolvers import reverse_lazy
@@ -42,3 +42,7 @@ class GrantRequestCreateView(CreateView):
         emailer.send_new_grant_email(user=user,
                                      instance=form.instance)
         return super(GrantRequestCreateView, self).form_valid(form)
+
+
+def error404(request):
+    return render(request, '404.html', status=404)

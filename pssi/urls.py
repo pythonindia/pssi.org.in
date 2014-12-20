@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include, url, handler404
 from django.views.generic.base import TemplateView
 from django.contrib import admin
 
@@ -48,3 +48,5 @@ urlpatterns = patterns(
     url(r'^accounts/', include('allauth.urls')),
     url(r'^markdown/', include('django_markdown.urls')),
 )
+
+handler404 = 'grants.views.error404'
