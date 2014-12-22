@@ -67,7 +67,7 @@
                             {% if user.is_authenticated %}
                                 <li class="divider"></li>
                                 <li><a href="{% url 'by-laws' %}">By-laws</a></li>
-                                <li><a href="{% url 'financial' %}">Financial</a></li>
+                                
                             {% endif %}
                         </ul>
                     </li>
@@ -77,6 +77,13 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'pyconindia-static' %}">PyCon India</a></li>
                             <li><a href="http://www.pythonexpress.in/" target="_blank">Python Express</a></li>
+                            <li><a href="{% url 'miniconf' %}">Mini conference</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'financial' %}">Travel Allowance</a></li>
+                                <li><a href="{% url 'pymonth' %}">Python Month Allowance</a></li>
+                             {% endif %}
+                               
+                            
                         </ul>
                     </li>
                     <li class="dropdown">
