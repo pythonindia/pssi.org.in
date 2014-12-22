@@ -46,7 +46,7 @@ FOOTER = """
     """
 
 GRANT_MESSAGE = ''.join([MESSAGE, GRANT_DATA, FOOTER])
-APLLICATION_MESSAGE = ''.join([MESSAGE, FOOTER])
+APPLICATION_MESSAGE = ''.join([MESSAGE, FOOTER])
 PAYMENT_SUCCESS_MESSAGE = ''.join([MESSAGE, FOOTER])
 
 
@@ -129,7 +129,8 @@ def _send_grant_email_to_staff(user, instance):
     body = """
     {first_name} has submitted grant request for amount: {amount} """.format(
         first_name=user.first_name, amount=instance.amount)
-    message = GRANT_MESSAGE.format(first_name=user.first_name,
+    # We don't want list of staffs to be addressed with someone's first name
+    message = GRANT_MESSAGE.format(first_name="",
                                    amount=instance.amount,
                                    instance=instance,
                                    body=body)
@@ -141,7 +142,8 @@ def _send_new_membership_to_staff(user):
     body = """
     {first_name} has submitted application to become PSSI member""".format(
         first_name=user.first_name)
-    message = APLLICATION_MESSAGE.format(first_name=user.first_name, body=body)
+    # We don't want list of staffs to be addressed with someone's first name
+    message = APPLICATION_MESSAGE.format(first_name="", body=body)
     return _send_mail(subject, message, recipient_list=get_all_staff_emails())
 
 
@@ -151,7 +153,7 @@ def _send_new_membership_to_user(user):
     Your request to become PSSI member is received. We are processing it and
     email will be sent with the updated status.
     """
-    message = APLLICATION_MESSAGE.format(first_name=user.first_name, body=body)
+    message = APPLICATION_MESSAGE.format(first_name=user.first_name, body=body)
     return _send_mail(subject, message, recipient_list=[user.email])
 
 
@@ -170,6 +172,7 @@ def _send_payment_confirmation_email_to_staff(user, instance):
     body = """
     {first_name}'s membership payment of {amount} successfully received.""".format(
         first_name=user.first_name, amount=instance.amount)
-    message = PAYMENT_SUCCESS_MESSAGE.format(first_name=user.first_name,
+    # We don't want list of staffs to be addressed with someone's first name
+    message = PAYMENT_SUCCESS_MESSAGE.format(first_name="",
                                              body=body)
     return _send_mail(subject, message, recipient_list=get_all_staff_emails())
