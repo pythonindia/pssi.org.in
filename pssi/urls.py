@@ -48,5 +48,3 @@ urlpatterns = patterns(
     url(r'^accounts/', include('allauth.urls')),
     url(r'^markdown/', include('django_markdown.urls')),
 )
-
-handler404 = 'common.views.error404'
