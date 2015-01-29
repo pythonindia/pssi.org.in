@@ -31,6 +31,12 @@ urlpatterns = patterns(
     url(r'^financial/$', TemplateView.as_view(
         template_name='financial.html',
     ), name='financial'),
+    url(r'^pymonth/$', TemplateView.as_view(
+        template_name='python_month.html',
+    ), name='pymonth'),
+    url(r'^miniconf/$', TemplateView.as_view(
+        template_name='mini_conf.html',
+    ), name='miniconf'),
 
     url(r'^grants/list/$', GrantTypeListView.as_view(),
         name='grants_list'),
@@ -48,5 +54,3 @@ urlpatterns = patterns(
     url(r'^accounts/', include('allauth.urls')),
     url(r'^markdown/', include('django_markdown.urls')),
 )
-
-handler404 = 'common.views.error404'
