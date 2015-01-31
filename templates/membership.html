@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block head_title %}PyCon India - {{ block.super }}{% endblock %}
+{% block head_title %} Membership- {{ block.super }}{% endblock %}
 
 {% block header %}
 <header class="header-big fill-blue center-wrapper text-center">
@@ -16,10 +16,23 @@
 <section class="content">
     <div class="push-4-bottom">
         <h3 class="push-1-top">How do I become a member of the PSSI ?</h3>
-        <p>In order to become a member of the PSSI you need to satisfy the following.</p>
+        <p>Procedure</p>
+        <ul>
+            <li>Create your account on <a href="/accounts/login/">pssi.org.in</a> and
+                    fill  your <a href="/profile/">profile </a> </li>
+            <li>Once profile details are entered, click on apply for membership button in profile page</li>
+            <li>One of PSSI board member will validate your profile info and approve it</li>
+            <li>Once membership is approved,
+                    make the payment by following step in <a href="/profile/membership/">membership </a> page</li>
+            <li> Once payment is received you will be added to
+                        <a href="https://mail.python.org/mailman/listinfo/pssi">pssi mailing list </a>
+                    as member
+            </li>
+        </ul>
+        <p>Criteria</p>
         <ul>
             <li>You need to be an Indian citizen.</li>
-            <li>Pay a membership fee of INR 600/- to register yourself as a member for 2 years.</li>
+            <li>Pay a membership fee of  ₹ 500/- to register yourself as a member for 2 years.</li>
         </ul>
 
         <h3 class="push-1-top">What are the benefits of being a PSSI member ?</h3>
@@ -32,6 +45,7 @@
             the use and adoption of Python programming language in academic &amp; industrial areas. Being
             part of PSSI allows you to make your voice heard and be a prominent part of this influence.</li>
         </ol>
+
         <p class="push-2">
         	{% if user.is_authenticated %}
         		<a href="/profile/membership/" class="btn btn-primary legible-prose">Manage Membership</a>
