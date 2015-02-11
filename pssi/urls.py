@@ -12,7 +12,7 @@ urlpatterns = patterns(
     url(r'^$', TemplateView.as_view(
         template_name='index.html',
     ), name='home'),
-    url(r'^about/$',  BoardListView.as_view(), name='about-static'),
+    url(r'^about/$', BoardListView.as_view(), name='about-static'),
     url(r'^membership/$', TemplateView.as_view(
         template_name='membership.html',
     ), name='membership-static'),
