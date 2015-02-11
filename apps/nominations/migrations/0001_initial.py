@@ -16,13 +16,15 @@ class Migration(migrations.Migration):
             name='Nomination',
             fields=[
                 ('id', models.AutoField(
-                    primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                    primary_key=True, verbose_name='ID', serialize=False,
+                    auto_created=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('fullname', models.CharField(max_length=200)),
                 ('email', models.EmailField(max_length=100)),
                 ('gender', models.CharField(
-                    db_index=True, max_length=1, choices=[('M', 'MALE'), ('F', 'FEMALE')])),
+                    db_index=True, max_length=1,
+                    choices=[('M', 'MALE'), ('F', 'FEMALE')])),
                 ('self_nomiation', models.BooleanField(
                     default=False, verbose_name='Self Nomination ')),
                 ('contact_number', models.CharField(max_length=10)),
@@ -31,9 +33,12 @@ class Migration(migrations.Migration):
                 ('profession', models.CharField(
                     default='I work/study at ...', max_length=300)),
                 ('contribution_info', models.TextField(
-                    default=' Explain in detail about the candidate contribution')),
+                    default=' Explain in detail about the \
+                    candidate contribution')),
                 ('references', models.TextField(
-                    default='The references themselves must be people who are known by\n        either their work in the Python community')),
+                    default='The references themselves must be people \
+                    who are known by\n  either their work in the\
+                     Python community')),
                 ('reason_to_join_board', models.TextField(
                     default='Reason to join PSSI board ', blank=True)),
             ],
@@ -46,14 +51,21 @@ class Migration(migrations.Migration):
             name='NominationType',
             fields=[
                 ('id', models.AutoField(
-                    primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                    primary_key=True, verbose_name='ID',
+                    serialize=False, auto_created=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(db_index=True, max_length=100, choices=[
-                 ('Board Member', 'Board Member'), ('Kenneth Gonsalves', 'Kenneth Gonsalves')])),
+                ('name', models.CharField(db_index=True, max_length=100,
+                                          choices=[
+                                              ('Board Member', 'Board Member'),
+                                              ('Kenneth Gonsalves',
+                                               'Kenneth Gonsalves')
+                                          ])),
                 ('slug', models.CharField(unique=True, max_length=10)),
                 ('active', models.BooleanField(
-                    default=True, verbose_name='Whether this  type should be available to public')),
+                    default=True,
+                    verbose_name='Whether this  type should \
+                    be available to public')),
             ],
             options={
                 'abstract': False,
