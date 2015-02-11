@@ -38,7 +38,7 @@ class Nomination(BaseModel):
     contact_number = models.CharField(max_length=10)
     postal_address = models.TextField(default="Your Full address")
     profession = models.CharField(
-        max_length=300,  default="I work/study at ...")
+        max_length=300, default="I work/study at ...")
     contribution_info = models.TextField(
         default=''' Explain in detail about the candidate contribution''')
     references = models.TextField(

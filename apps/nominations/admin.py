@@ -16,6 +16,5 @@ class NominationAdmin(admin.ModelAdmin):
     def export_nomination_to_csv(self, request, action_objects):
         # TODO  Need to work on this action Kept it as place holder
         pass
-admin.site.register(
-    NominationType,  AdminNominationType)
+admin.site.register(NominationType,  AdminNominationType)
 admin.site.register(Nomination, NominationAdmin)
