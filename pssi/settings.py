@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'accounts',
     'board',
     'grants',
+    'nominations',
     'blogs',
     'payments',
 )
