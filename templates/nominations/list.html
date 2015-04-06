@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load markdown_tags %}
+
+{% block head_title %}Grants - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Nomination</h1>
+
+
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="push-4-bottom push-1-top">
+        {% for nomination in nomination_type_list %}
+            <div>
+            <a href="{% url 'create_nominee' nomination.slug %}" class="btn btn-primary btn-lg active">Nominate for {{ nomination.name }}</a>
+            </div><br>
+        {% endfor %}
+    </div><!-- /.entry-content -->
+</section>
+{% endblock %}

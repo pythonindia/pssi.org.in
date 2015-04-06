@@ -27,13 +27,13 @@
         <p>It is also worth mentioning that PSSI has received funds from PSF for conducting PyCon India in the past and might receive such funds in the future as well. However PSF has no say in the governance and conduct of the board members of PSSI.</p>
 
         <h3 class="push-1-top">PSSI Board</h3>
-        <p>The board positions of PSSI to which annual elections are held every year include,</p>
+        <p>The board positions of PSSI </p>
         <ol>
-            <li>President - Anand B Pillai.</li>
-            <li>Vice-President - Konark Modi.</li>
-            <li>Secretary - Vijay Kumar.</li>
-            <li>Treasurer - Sreekanth S Rameshaiah.</li>
-            <li>Joint-Secretary - Kracekumar Ramaraju.</li>
+            {% for post in board_member %}
+            <li>
+              {{post.user.get_full_name}} - {{post.designation}}
+            </li>
+            {% endfor %}
         </ol>
 
         <h3 class="push-1-top">Annual General Meeting</h3>
