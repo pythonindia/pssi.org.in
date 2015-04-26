@@ -9,7 +9,7 @@ GENDER_CHOICES = (
 
 NOMINATION_NAME_CHOICE = (
     ('Board Member', 'Board Member'),
-    ('Kenneth Gonsalves', 'Kenneth Gonsalves')
+    ('Kenneth Gonsalves Award', 'Kenneth Gonsalves Award')
 )
 
 
@@ -40,10 +40,9 @@ class Nomination(BaseModel):
     profession = models.CharField(
         max_length=300, default="I work/study at ...")
     contribution_info = models.TextField(
-        default=''' Explain in detail about the candidate contribution''')
+        default=''' Explain in detail about the candidate contribution.\nPlease provide numbered points as much as possible.''')
     references = models.TextField(
-        default='''The references themselves must be people who are known by
-        either their work in the Python community''')
+        default='''The references themselves must be people who are known by\ntheir work in the Python community. Please enter Name and Email address.''')
     reason_to_join_board = models.TextField(
         default="Reason to join PSSI board ", blank=True)
 
