@@ -40,12 +40,25 @@ GRANT_DATA = """
     Comments: {instance.comments}
     """
 
+NOMINATION_DATA = """
+    Following are the details submitted for reference:
+    -------------------------------------------------
+    Nomination Type: {instance.ntype.name}
+    Nominee Name: {instance.fullname}
+    Nominee Email: {instance.email}
+    Nominee Gender: {instance.gender}
+    Nominee Profession: {instance.profession}
+    Nominee Contributions: {instance.contribution_info}
+    References: {instance.references}
+    """
 FOOTER = """
     Regards
     PSSI - Python Software Society Of India
     """
 
 GRANT_MESSAGE = ''.join([MESSAGE, GRANT_DATA, FOOTER])
+NOMINATION_MESSAGE = ''.join([MESSAGE, NOMINATION_DATA, FOOTER])
+
 APPLICATION_MESSAGE = ''.join([MESSAGE, FOOTER])
 PAYMENT_SUCCESS_MESSAGE = ''.join([MESSAGE, FOOTER])
 
@@ -176,3 +189,35 @@ def _send_payment_confirmation_email_to_staff(user, instance):
     message = PAYMENT_SUCCESS_MESSAGE.format(first_name="",
                                              body=body)
     return _send_mail(subject, message, recipient_list=get_all_staff_emails())
+
+
+def _send_new_nomiation_email_to_user(user, instance):
+    subject = "[PSSI] New nomination request: {}".format(instance.ntype.name)
+    body = """
+    We have received you nomintation for {fullname}
+    Thanks you for your nomination""".format(fullname=instance.fullname)
+    message = NOMINATION_MESSAGE.format(
+                        first_name=user.first_name,
+                        instance=instance,
+                        body=body)
+    return _send_mail(subject, message, recipient_list=[user.email])
+
+
+def _send_new_nomiation_email_to_staff(user, instance):
+    subject = "[PSSI] New nomination request: {}".format(instance.ntype.name)
+    body = """
+    {first_name} has submitted nomination t for : {fullname} """.format(
+        first_name=user.first_name, fullname=instance.fullname)
+    # We don't want list of staffs to be addressed with someone's first name
+    message = NOMINATION_MESSAGE.format(
+                            first_name='',
+                            instance=instance,
+                            body=body)
+    return _send_mail(subject, message, recipient_list=['vnbang2003@gmail.com'])
+
+
+def send_new_nomiation_email(user, instance):
+    """Send email to user and staff when grant is submitted.
+    """
+    _send_new_nomiation_email_to_user(user, instance)
+    _send_new_nomiation_email_to_staff(user, instance)
