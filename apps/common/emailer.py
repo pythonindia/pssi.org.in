@@ -206,14 +206,14 @@ def _send_new_nomiation_email_to_user(user, instance):
 def _send_new_nomiation_email_to_staff(user, instance):
     subject = "[PSSI] New nomination request: {}".format(instance.ntype.name)
     body = """
-    {first_name} has submitted nomination t for : {fullname} """.format(
+    {first_name} has submitted nomintation for : {fullname} """.format(
         first_name=user.first_name, fullname=instance.fullname)
     # We don't want list of staffs to be addressed with someone's first name
     message = NOMINATION_MESSAGE.format(
                             first_name='',
                             instance=instance,
                             body=body)
-    return _send_mail(subject, message, recipient_list=['vnbang2003@gmail.com'])
+    return _send_mail(subject, message, recipient_list=['contact@pssi.org.in'])
 
 
 def send_new_nomiation_email(user, instance):
