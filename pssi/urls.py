@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 from grants.views import GrantRequestCreateView, GrantTypeListView
 from nominations.views import NominationCreateView, NominationTypeListView
+from nominations.views import NomineeListView
 from board.views import BoardListView
+
 urlpatterns = patterns(
     '',
     # Examples:
@@ -48,6 +50,9 @@ urlpatterns = patterns(
     url(r'^nomination/list/$',
         login_required(NominationTypeListView.as_view()),
         name='nomination_list'),
+    url(r'^nomination/nominee/(?P<slug>[\w+]+)/list/$',
+        login_required(NomineeListView.as_view()),
+        name='view_nominations'),
     url(r'^nomination/success/$', login_required(TemplateView.as_view(
         template_name='nominations/nomination_success.html')),
         name='nominee_req_success'),

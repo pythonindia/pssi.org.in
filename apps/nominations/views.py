@@ -1,24 +1,68 @@
 # -*- coding: utf-8 -*-
-
+from datetime import datetime
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 from .models import Nomination, NominationType
 from .forms import NominationForm
 from common import emailer
+from board.models import BoardMember
 
-class NominationTypeListView(ListView):
+
+class LoginRequiredMixin(object):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(
+                                            request,  *args, **kwargs)
+
+
+def is_board_member(user):
+    board = BoardMember.objects.filter(
+                        user=user)
+    if board.count():
+        if [b for b in board if b.end_date.replace(tzinfo=None) <= datetime.now()]:
+            return True
+    return False
+
+
+class NominationTypeListView(ListView, LoginRequiredMixin):
     model = NominationType
     template_name = 'nominations/list.html'
     context_object_name = 'nomination_type_list'
 
-    def get_queryset(self, *args, **kwargs):
-        return self.model.objects.filter(active=True).order_by('id')
+    def get_context_data(self, *args, **kwargs):
+        context = super(
+            NominationTypeListView, self).get_context_data(*args, **kwargs)
+        context['nomination_type_list'] = NominationType.objects.filter(active=True).order_by('id')
+        context['board_member'] = is_board_member(self.request.user)
+        return context
 
 
-class NominationCreateView(CreateView):
+class NomineeListView(ListView, LoginRequiredMixin):
+    model = NominationType
+    template_name = 'nominations/nominee_list.html'
+    context_object_name = 'nomination_type_list'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not is_board_member(self.request.user):
+            return HttpResponseForbidden("Not board Member")
+        return super(NomineeListView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(
+            NomineeListView, self).get_context_data(*args, **kwargs)
+        nomination_type = get_object_or_404(
+            NominationType, slug=self.kwargs.get('slug'), active=True)
+        context['nomination_list'] = Nomination.objects.filter(ntype=nomination_type)
+        return context
+
+
+class NominationCreateView(CreateView, LoginRequiredMixin):
     model = Nomination
     form_class = NominationForm
     template_name = 'nominations/nominations.html'

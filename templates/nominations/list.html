@@ -20,8 +20,11 @@
     <div class="push-4-bottom push-1-top">
         {% for nomination in nomination_type_list %}
             <div>
-            <a href="{% url 'create_nominee' nomination.slug %}" class="btn btn-primary btn-lg active">Nominate for {{ nomination.name }}</a>
-            </div><br>
+                    <a href="{% url 'create_nominee' nomination.slug %}" class="btn btn-primary btn-lg active">Nominate for {{ nomination.name }}</a>
+                    {% if board_member %}
+                        <a href="{% url 'view_nominations' nomination.slug %}" class="btn btn-primary btn-lg "> View list </a>
+                    {% endif %}
+
         {% endfor %}
     </div><!-- /.entry-content -->
 </section>

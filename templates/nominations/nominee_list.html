@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load markdown_tags %}
+
+{% block head_title %}Grants - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Nomination</h1>
+
+
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="push-4-bottom push-1-top">
+        <table border="1">
+                <thead>
+                    <td>Full Name </td>
+                    <td>Email</td>
+                    <td>Gender</td>
+                    <td>Self Nomination</td>
+                    <td>Contact Number</td>
+                    <td>Postal Address</td>
+                    <td>Profession</td>
+                    <td>Contribution</td>
+                    <td>References</td>
+                </thead>
+        {% for nomination in nomination_list %}
+                <tr>
+                    <td> {{nomination.fullname}}</td>
+                    <td> {{nomination.email}}</td>
+                    <td> {{nomination.gender}}</td>
+                    <td> {{nomination.self_nomiation}}</td>
+                    <td> {{nomination.contact_number}}</td>
+                    <td> {{nomination.postal_address}}</td>
+                    <td> {{nomination.profession}}</td>
+                    <td> {{nomination.contribution_info}}</td>
+                    <td> {{nomination.references}}</td>
+                </tr>
+
+        {% endfor %}
+        </table>
+    </div><!-- /.entry-content -->
+</section>
+{% endblock %}
