@@ -22,11 +22,9 @@ class LoginRequiredMixin(object):
 
 
 def is_board_member(user):
-    board = BoardMember.objects.filter(
-                        user=user)
-    if board.count():
-        if [b for b in board if b.end_date.replace(tzinfo=None) <= datetime.now()]:
-            return True
+    if BoardMember.objects.filter(
+                        user=user).exists():
+        return True
     return False
 
 
