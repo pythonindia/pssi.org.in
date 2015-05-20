@@ -9,6 +9,7 @@ from .models import Nomination, NominationType
 from .forms import NominationForm
 from common import emailer
 
+
 class NominationTypeListView(ListView):
     model = NominationType
     template_name = 'nominations/list.html'
@@ -47,6 +48,8 @@ class NominationCreateView(CreateView):
         form.instance.user = user
         form.instance.ntype = get_object_or_404(
             NominationType, slug=self.kwargs.get('slug'), active=True)
-        emailer.send_new_nomiation_email(user=user,
-                                     instance=form.instance)
+        emailer.send_new_nomiation_email(
+            user=user,
+            instance=form.instance
+        )
         return super(NominationCreateView, self).form_valid(form)

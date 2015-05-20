@@ -197,9 +197,10 @@ def _send_new_nomiation_email_to_user(user, instance):
     We have received you nomintation for {fullname}
     Thanks you for your nomination""".format(fullname=instance.fullname)
     message = NOMINATION_MESSAGE.format(
-                        first_name=user.first_name,
-                        instance=instance,
-                        body=body)
+        first_name=user.first_name,
+        instance=instance,
+        body=body
+    )
     return _send_mail(subject, message, recipient_list=[user.email])
 
 
@@ -210,9 +211,10 @@ def _send_new_nomiation_email_to_staff(user, instance):
         first_name=user.first_name, fullname=instance.fullname)
     # We don't want list of staffs to be addressed with someone's first name
     message = NOMINATION_MESSAGE.format(
-                            first_name='',
-                            instance=instance,
-                            body=body)
+        first_name='',
+        instance=instance,
+        body=body
+    )
     return _send_mail(subject, message, recipient_list=['contact@pssi.org.in'])
 
 
