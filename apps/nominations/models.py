@@ -43,9 +43,7 @@ class Nomination(BaseModel):
         default=''' Explain in detail about the candidate contribution.\nPlease provide numbered points as much as possible.''')
     references = models.TextField(
         default='''The references themselves must be people who are known by\ntheir work in the Python community. Please enter Name and Email address.''')
-    reason_to_join_board = models.TextField(
-        default="Reason to join PSSI board ", blank=True)
-
+    
     def __str__(self):
         return "{user}: {ntype} [{fullname}]".format(
             user=self.user.username,
