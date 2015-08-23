@@ -22,7 +22,8 @@
 
               {{ gtype.terms|markdown2html|safe }}
               <hr>
-
+              {{ ntype.description|markdown2html|safe  }}
+              <hr>
               <form class="apply_grants" method="POST" action=".">
                 {% csrf_token %}
                 {% bootstrap_form form %}

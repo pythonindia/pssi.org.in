@@ -17,6 +17,9 @@ class NominationType(BaseModel):
     name = models.CharField(
         max_length=100, choices=NOMINATION_NAME_CHOICE, db_index=True)
     slug = models.CharField(max_length=10, unique=True)
+    description = models.TextField(
+        "Description about nomination",
+        default="")
     active = models.BooleanField(
         "Whether this  type should be available to public",
         default=True
