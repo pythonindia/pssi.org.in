@@ -18,12 +18,11 @@ class LoginRequiredMixin(object):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(
-                                            request,  *args, **kwargs)
+            request,  *args, **kwargs)
 
 
 def is_board_member(user):
-    if BoardMember.objects.filter(
-                        user=user).exists():
+    if BoardMember.objects.filter(user=user).exists():
         return True
     return False
 
@@ -36,7 +35,8 @@ class NominationTypeListView(ListView, LoginRequiredMixin):
     def get_context_data(self, *args, **kwargs):
         context = super(
             NominationTypeListView, self).get_context_data(*args, **kwargs)
-        context['nomination_type_list'] = NominationType.objects.filter(active=True).order_by('id')
+        context['nomination_type_list'] = NominationType.objects.filter(
+            active=True).order_by('id')
         context['board_member'] = is_board_member(self.request.user)
         return context
 
@@ -56,7 +56,8 @@ class NomineeListView(ListView, LoginRequiredMixin):
             NomineeListView, self).get_context_data(*args, **kwargs)
         nomination_type = get_object_or_404(
             NominationType, slug=self.kwargs.get('slug'), active=True)
-        context['nomination_list'] = Nomination.objects.filter(ntype=nomination_type)
+        context['nomination_list'] = Nomination.objects.filter(
+            ntype=nomination_type)
         return context
 
 
@@ -89,6 +90,8 @@ class NominationCreateView(CreateView, LoginRequiredMixin):
         form.instance.user = user
         form.instance.ntype = get_object_or_404(
             NominationType, slug=self.kwargs.get('slug'), active=True)
-        emailer.send_new_nomiation_email(user=user,
-                                     instance=form.instance)
+        emailer.send_new_nomiation_email(
+            user=user,
+            instance=form.instance
+        )
         return super(NominationCreateView, self).form_valid(form)
