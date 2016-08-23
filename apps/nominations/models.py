@@ -53,3 +53,29 @@ class Nomination(BaseModel):
             ntype=self.ntype.name,
             fullname=self.fullname
         )
+
+
+class VotingURL(BaseModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    url_hash = models.CharField("hash", blank=False, max_length=32, unique=True)
+    expiry = models.DateTimeField("Expiry")
+    ntype = models.ForeignKey('NominationType')
+
+    def __str__(self):
+        return "{user}: {hash} - {expiry}". format(
+            user=self.user.username,
+            hash=self.url_hash,
+            expiry=self.expiry)
+
+
+class UserVoting(BaseModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    vote = models.ForeignKey('Nomination')
+    voting_url = models.ForeignKey('VotingURL')
+    comments = models.TextField()
+
+    def __str__(self):
+        return "{user}: {vote} - {comments}". format(
+            user=self.user.username,
+            vote=self.vote,
+            comments=self.comments,)

@@ -23,6 +23,10 @@
                     <a href="{% url 'create_nominee' nomination.slug %}" class="btn btn-primary btn-lg active">Nominate for {{ nomination.name }}</a>
                     {% if board_member %}
                         <a href="{% url 'view_nominations' nomination.slug %}" class="btn btn-primary btn-lg "> View list </a>
+                        <a href="{% url 'view_all_nominations' %}" class="btn btn-primary btn-lg "> 
+                        Generate Voting Email </a>
+                        <a href="{% url 'vote_summary' %}" class="btn btn-primary btn-lg "> 
+                        View Voting Summary </a>
                     {% endif %}
 
         {% endfor %}

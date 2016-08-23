@@ -185,6 +185,8 @@ LOGGING = {
 
 SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
 
+SITE_PROTOCOL = 'http'
+
 # Instamojo (payemnt) link
 
 # Add this in local settings
