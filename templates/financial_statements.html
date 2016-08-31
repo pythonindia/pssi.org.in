@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Financial Statements - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+  <div class="absolute-center push-2">
+    <div class="measure-block">
+      <h1 class="yellow push-1q-bottom nospace-top">Financial Statement</h1>
+      <h2 class="white normal push-1q-bottom">PSSI Income and Expenditure</h2>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+  <h3>Download Financial Statements</h3>
+  <ol>
+    {% load static %}
+    <li><a href='{% static "financial_statements/PSSI_balance_and_income_and_expenditure_2014.pdf" %}'>Download 2014 Income and Expenditure</a></li>
+    <li><a href='{% static "financial_statements/PSSI_balance_and_income_and_expenditure_2015.pdf" %}'>Download 2015 Income and Expenditure</a></li>
+  </ol>
+</section>
+{% endblock %}

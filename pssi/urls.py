@@ -33,6 +33,9 @@ urlpatterns = patterns(
     url(r'^financial/$', TemplateView.as_view(
         template_name='financial.html',
     ), name='financial'),
+    url(r'^financial_statements/$', TemplateView.as_view(
+        template_name='financial_statements.html',
+    ), name='financial_statements'),
     url(r'^pymonth/$', TemplateView.as_view(
         template_name='python_month.html',
     ), name='pymonth'),
