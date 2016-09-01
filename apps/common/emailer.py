@@ -114,6 +114,26 @@ def send_payment_confirmation_email(user, instance):
     _send_payment_confirmation_email_to_staff(user, instance)
 
 
+def send_voting_email(user, nomination_type, slug, vote_url):
+    subject = "PSSI Voting Request for {nomination_type} - {slug}".format(nomination_type=nomination_type, 
+                                                                          slug=slug)
+    message = """ 
+                    Hi %s,
+
+                    As you are aware that we have closed the Nomination for %s - %s.
+
+                    We are in the process of voting. Being a PSSI member, your vote makes a lot of difference.
+                    Below is the link for voting.
+                    <a href="%s">Vote</a>
+                    Request you to vote for a nominee and help us select one.
+
+                    Cheers!
+                    PSSI Board.
+                    """ % (user.first_name, nomination_type, slug, vote_url)
+
+    return _send_mail(subject, message, recipient_list=[user.email])
+
+
 # Private functions
 def _send_mail(subject, message, recipient_list):
     """All the email originating from system should go via this interface.

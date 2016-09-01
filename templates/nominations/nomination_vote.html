@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load markdown_tags %}
+
+{% block head_title %}Nominations - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Nomination</h1>
+
+
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var message = "{{ message }}";
+        if (message){
+            $('#content').empty()
+                .append('<h3><font color="red">' + message + '</font></h3>')
+            ;
+        }
+        $('#nominee:checked').prop('checked', false);
+        $('#comments').val('');
+    });
+    function submitVote(){
+        var data = {};
+        var nominee = $('#nominee:checked').val();
+        var comments = $.trim($('#comments').val());
+
+        // Validations
+        if (!nominee){
+            alert('Please select a Nominee');
+            return;
+        }
+
+        if (!comments){
+            alert('Please add Comments');
+            return;   
+        }
+        else if(comments.split(' ').length < 30){
+            alert('Comments should be minimum 30 words long');
+            return;      
+        }
+
+        data['nominee'] = nominee;
+        data['comments'] = comments;
+        data['csrfmiddlewaretoken'] = "{{ csrf_token }}";
+
+        var url = '/nomination/vote/{{ nomination_id }}/{{ hash }}/'
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(data){
+                if (data=='Success'){
+                    $('#content').empty()
+                        .append('<h3>Thanks! Your voting has been submitted.</h3>')
+                    ;
+                }
+            },
+            error: function(){
+                console.log('error');
+                alert('Some error occurred. Please try again later.');
+            }
+        })
+    }
+    
+
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="push-4-bottom push-1-top">
+        <div id="content">
+            <div>
+            We have received below nominations for <b>{{ nomination }}</b>. <br/>
+            Voting is open till <b>{{ expiry }}</b>. <br/>Please Vote a nominee of your choice and also let us know the reason for your selection.
+            </div><br/><br/>
+            <div id="nominees_div">
+                <table>
+                    <tr>
+                        <th width="20%">Nominee</th>
+                        <th width="30%">Profession</th>
+                        <th width="50%">Contribution Details</th>
+                    </tr>
+                    
+                    {% for nominee in nominees %}
+                    <tr>
+                        <td><input type="radio" name="nominee" id="nominee" value="{{ nominee.id }}">   {{ nominee.fullname }}</input></td>
+                        <td>{{ nominee.profession }}</td>
+                        <td>{{ nominee.contribution_info }}</td>
+                    </tr>
+                {% endfor %}
+                
+                </table>
+                </br></br>
+                <span>
+                    <label for="comments">Comments</label>
+                    <textarea name="comments" id="comments" rows="5" cols="70"></textarea>
+                </span></br></br>
+            </div>
+            <a class="btn btn-primary btn-lg " id="vote" onclick="submitVote()"> Submit </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

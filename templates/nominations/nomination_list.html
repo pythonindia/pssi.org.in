@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load markdown_tags %}
+
+{% block head_title %}Nominations - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Nomination</h1>
+
+
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#nomination').val('Select');
+    });
+
+    function checkAll(elem){
+        if ($(elem).attr('name') == 'uncheckall'){
+            $('.chkAll').prop('checked', false);
+        }
+        else{
+            $('.chkAll').prop('checked', true);
+        }
+    }
+
+    function requestVote(){
+        var data = {};
+
+        // Validations
+        var nomination = $('#nomination').val();
+        if (nomination == 'Select'){
+            alert('Please select Nomination');
+            return;
+        }
+
+        // get the list of selected board members
+        var board_members = []
+        $('.chkAll').each(function(){
+            if($(this).prop('checked')){
+                board_members.push($(this).val());
+            }
+        })
+
+        if (jQuery.isEmptyObject(board_members)){
+            alert('Please select atleast one Board Member');
+            return;
+        }
+
+        data['nomination_id'] = nomination;
+        data['nomination'] = $("#nomination :selected").text();
+        data['board_members'] = board_members;
+        data['csrfmiddlewaretoken'] = "{{ csrf_token }}";
+
+        $.ajax({
+            type: 'POST',
+            url: '/nomination/request_vote/',
+            data: data,
+            success: function(data){
+                if (data == 'Success'){
+                    alert('Email is sent sucessfully to all the selected board members for voting.');
+                }
+            },
+            error: function(){
+                console.log('error in sending the email for voting');
+                alert('Error occured while sending the Voting email. Please try again.');
+            }
+        })
+    }
+    
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="push-4-bottom push-1-top">
+        <label for="nomination">Nomination:  &nbsp;&nbsp;</label>
+        <select name='nomination' id='nomination'">
+            <option value="Select" selected="selected">Select</option>
+            {% for nom_id, nomination in nomination_types.items %}
+                <option value="{{nom_id}}">{{nomination}}</option>
+            {% endfor %}
+        </select>
+        <br/><br/>
+        <div id="board_members_div">
+            <label for="board_members">Board Members</label></br>
+            <input type="button" name="checkall" value="Check All" onclick="checkAll(this)"></input>&nbsp;&nbsp;
+            <input type="button" name="uncheckall" value="Uncheck All" onclick="checkAll(this)"></input></br></br>
+            <div id="board_members">
+                {% for mem_id, member in board_members.items %}
+                    <input type="checkbox" class="chkAll" name="board" value="{{ mem_id }}">   &nbsp;&nbsp; {{ member }}</input><br/>
+                {% endfor %}
+            </div>
+        </div></br></br>
+        <a class="btn btn-primary btn-lg " id="vote" onclick="requestVote()"> 
+                        Send Email </a>
+    </div>
+</section>
+{% endblock %}

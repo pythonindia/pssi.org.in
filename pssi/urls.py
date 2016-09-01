@@ -4,8 +4,14 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 
 from grants.views import GrantRequestCreateView, GrantTypeListView
-from nominations.views import NominationCreateView, NominationTypeListView
-from nominations.views import NomineeListView
+from nominations.views import (
+    NominationCreateView,
+    NominationTypeListView,
+    NomineeListView,
+    ViewNominationListView,
+    CreateVoteUrlView,
+    ViewNominations,
+    VotingSummaryList)
 from board.views import BoardListView
 
 urlpatterns = patterns(
@@ -15,6 +21,7 @@ urlpatterns = patterns(
         template_name='index.html',
     ), name='home'),
     url(r'^about/$', BoardListView.as_view(), name='about-static'),
+
     url(r'^membership/$', TemplateView.as_view(
         template_name='membership.html',
     ), name='membership-static'),
@@ -27,6 +34,7 @@ urlpatterns = patterns(
     url(r'^awards/$', TemplateView.as_view(
         template_name='awards.html',
     ), name='awards-static'),
+
     url(r'^by-laws/$', TemplateView.as_view(
         template_name='by_laws.html',
     ), name='by-laws'),
@@ -59,6 +67,22 @@ urlpatterns = patterns(
     url(r'^nomination/success/$', login_required(TemplateView.as_view(
         template_name='nominations/nomination_success.html')),
         name='nominee_req_success'),
+
+    url(r'^nomination/view/$',
+        login_required(ViewNominationListView.as_view()),
+        name='view_all_nominations'),
+
+    url(r'^nomination/request_vote/$',
+        login_required(CreateVoteUrlView.as_view()),
+        name='request_for_vote'),
+
+    url(r'^nomination/vote/summary/$',
+        login_required(VotingSummaryList.as_view()),
+        name='vote_summary'),
+
+    url(r'^nomination/vote/(?P<nomination>.*)/(?P<hash>.*)/$',
+        login_required(ViewNominations.as_view()),
+        name='vote_nominee'),
 
     url(r'^nomination/(?P<slug>[\w+]+)/$',
         login_required(NominationCreateView.as_view()),

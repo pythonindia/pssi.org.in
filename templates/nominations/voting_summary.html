@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load markdown_tags %}
+
+{% block head_title %}Nominations - {{ block.super }}{% endblock %}
+
+{% block header %}
+<header class="header-big fill-blue center-wrapper text-center">
+    <div class="absolute-center push-2">
+        <div class="measure-block">
+            <h1 class="yellow push-1q-bottom nospace-top">Nomination</h1>
+
+
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#nomination').val('Select');
+    });
+
+    function viewSummary(){
+        var data = {};
+
+        // Validations
+        var nomination = $('#nomination').val();
+        if (nomination == 'Select'){
+            alert('Please select Nomination');
+            return;
+        }
+
+        data['nomination_id'] = nomination;
+        data['nomination'] = $("#nomination :selected").text();
+        data['csrfmiddlewaretoken'] = "{{ csrf_token }}";
+
+        $.ajax({
+            type: 'POST',
+            url: '/nomination/vote/summary/',
+            data: data,
+            success: function(data){
+                data = jQuery.parseJSON(data);
+                $('#summary_tbl').empty()
+                    .append('<tr><th width="20%">Nominee</th><th width="20%">No of Votes</th><th width="30%">Profession</th><th width="50%">Contribution</th></tr>')
+                ;
+                $.each(data, function(ind, details){
+                    $('#summary_tbl').append('<tr><td>' + details.name + '</td><td>' + details.vote_count + '</td><td>' + details.profession + '</td><td>' + details.contribution_info + '</td></tr>')
+                });
+            },
+            error: function(){
+                console.log('error');
+                alert('Error occured. Please try again later.');
+            }
+        })
+    }
+    
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="push-4-bottom push-1-top">
+
+        <label for="nomination">Nomination:  &nbsp;&nbsp;</label>
+        <select name='nomination' id='nomination'">
+            <option value="Select" selected="selected">Select</option>
+            {% for nom_id, nomination in nomination_types.items %}
+                <option value="{{nom_id}}">{{nomination}}</option>
+            {% endfor %}
+        </select>
+        <a class="btn btn-primary btn-lg " id="summary" onclick="viewSummary()"> 
+                        View Summary </a>
+        <br/><br/>
+        
+        <div id="nominees_div">
+            <table id="summary_tbl">
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
