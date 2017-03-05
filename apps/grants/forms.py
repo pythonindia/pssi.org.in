@@ -12,7 +12,8 @@ from .models import GrantRequest, LocalConfRequest, LocalConfComment
 
 
 def get_all_users():
-    return [(user.id, user.username) for user in User.objects.all()]
+    return [(user.id, user.username)
+            for user in User.objects.order_by('username').all()]
 
 
 class GrantRequestForm(ModelForm):
