@@ -56,11 +56,35 @@ FOOTER = """
     PSSI - Python Software Society Of India
     """
 
+NEW_LOCAL_CONF = """
+    Hi {first_name}
+
+    {user.first_name} has submitted new local conf grant request.
+
+    The complete details is available at: {url}
+
+    Note: Please don't reply to the email.
+"""
+
+LOCAL_CONF_COMMENT = """
+    Hi {first_name}
+
+    {user.first_name} has submitted a new comment.
+
+    The complete details is available at: {url}
+
+    Note: Please don't reply to the email.
+"""
+
+
 GRANT_MESSAGE = ''.join([MESSAGE, GRANT_DATA, FOOTER])
 NOMINATION_MESSAGE = ''.join([MESSAGE, NOMINATION_DATA, FOOTER])
 
 APPLICATION_MESSAGE = ''.join([MESSAGE, FOOTER])
 PAYMENT_SUCCESS_MESSAGE = ''.join([MESSAGE, FOOTER])
+
+NEW_LOCAL_CONF_MESSAGE = ''.join([NEW_LOCAL_CONF, FOOTER])
+LOCAL_CONF_COMMENT_MESSAGE = ''.join([LOCAL_CONF_COMMENT, FOOTER])
 
 
 def send_new_grant_email(user, instance):
@@ -132,6 +156,22 @@ def send_voting_email(user, nomination_type, slug, vote_url):
                     """ % (user.first_name, nomination_type, slug, vote_url)
 
     return _send_mail(subject, message, recipient_list=[user.email])
+
+
+def send_local_conf_comment_email(local_conf, user, send_to, url):
+    subject = "New comment on local conf: {}".format(local_conf.name)
+    for receiver in send_to:
+        message = LOCAL_CONF_COMMENT_MESSAGE.format(
+            user=user, url=url, first_name=receiver.first_name)
+        _send_mail(subject=subject, message=message, recipient_list=[receiver.email])
+
+
+def send_new_local_conf_email(local_conf, user, send_to, url):
+    subject = "New local conf grant request: {}".format(local_conf.name)
+    for receiver in send_to:
+        message = NEW_LOCAL_CONF_MESSAGE.format(
+            user=user, url=url, first_name=receiver.first_name)
+        _send_mail(subject=subject, message=message, recipient_list=[receiver.email])
 
 
 # Private functions
