@@ -84,7 +84,7 @@ class LocalConfCreateView(CreateView):
         self.add_team_members(local_conf, form.cleaned_data['team_members'])
         url = reverse('local_conf_detail', args=[local_conf.pk])
         messages.add_message(self.request, messages.INFO,
-                             'New local conf request created.')
+                             'New local conf grant request created.')
         emailer.send_new_local_conf_email(
             local_conf=local_conf, user=self.request.user,
             send_to=local_conf.get_all_participants(),
