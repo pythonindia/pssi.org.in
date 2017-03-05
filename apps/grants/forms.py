@@ -30,6 +30,7 @@ class LocalConfRequestForm(ModelForm):
         widget=SelectMultiple(),
         required=False,
         label='Team Members',
+        help_text="Select list of folks who are part of the event"
         )
 
     class Meta:
