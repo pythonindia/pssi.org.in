@@ -83,7 +83,7 @@ class LocalConfCreateView(CreateView):
         local_conf = form.save()
         self.add_team_members(local_conf, form.cleaned_data['team_members'])
         url = reverse('local_conf_detail', args=[local_conf.pk])
-        messages.add_message(request, messages.INFO,
+        messages.add_message(self.request, messages.INFO,
                              'New local conf request created.')
         emailer.send_new_local_conf_email(
             local_conf=local_conf, user=self.request.user,
