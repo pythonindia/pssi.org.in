@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load markdown_tags %}
+
+{% block head_title %}Apply for Local Conf Grant{% endblock %}
+
+{% block endhead %}
+<style>
+ .required > label:after {
+   content: "*";
+ }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0 push-3">
+    <div class="form-container space-2-bottom">
+      <h2 class="fill-blue text-center">Local Conf Request for {{ local_conf.name }}</h2>
+      <div class="pad-2 push-half-top push-2-bottom">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <div class="alert alert-success" role="alert"> {{ message }}</div>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <section class="content">
+          <h3> Conference Details </h3>
+          <p>Name: {{ local_conf.name}}</p>
+          <p>Start Date: {{ local_conf.start_date}}</p>
+          <p>End Date: {{ local_conf.end_date}}</p>
+          <p>Website: <a href="{{ local_conf.website }}">{{ local_conf.website}} </a></p>
+          <p>Venue Address: {{ local_conf.location_address}}</p>
+          <p>Venue URL: <a href="{{ local_conf.location_url }}">{{ local_conf.location_url}} </a></p>
+          <p>Requested Amount: {{ local_conf.required_amount}}</p>
+          <p>Budget: {{ local_conf.budget}}</p>
+          <p>Expected Audience : {{ local_conf.expected_audience }}</p>
+          <p>Description: {{ local_conf.description|markdown2html|safe}}</p>
+          <p>Submitted By: {{ local_conf.requester.name}}</p>
+          <p> Status: 
+          <span class="label label-info">
+            {{ local_conf.get_status_display }}
+          </span>
+          </p>
+          <a href="{% url 'miniconf' %}">The complete details about the local conference information is available in the site.
+            Please read the details before submitting the form</a>
+        </section>
+        <hr>
+        <section class="comments">
+          <h3>Comments</h3>
+          {% for comment in comments %}
+          <div>
+            {% if comment.is_system_message %}
+            {{ comment.text }}
+            {% else %}
+            {{ comment.text }}
+            <br>
+            <br>
+            <b> {{ comment.user.get_full_name }} (~{{ comment.user.username }}) on
+              {{ comment.created_at}} </b>
+            {% endif %}
+            <hr>
+          </div>
+          {% endfor %}
+        </section>
+        <form method="POST" action=".">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% buttons %}
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+          {% endbuttons %}
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

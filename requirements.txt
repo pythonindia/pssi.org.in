@@ -1,7 +1,7 @@
 Django==1.7.1
 markdown==2.5.1
 django-allauth==0.18.0
-django-markdown==0.7.1
+django-markdown==0.8.4
 django-bootstrap3==4.11.0
 django-pgjson==0.2.0
 oauthlib==0.6.3

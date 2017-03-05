@@ -3,7 +3,12 @@ from django.views.generic.base import TemplateView
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 
-from grants.views import GrantRequestCreateView, GrantTypeListView
+from grants.views import (
+    GrantRequestCreateView,
+    GrantTypeListView,
+    LocalConfCreateView,
+    LocalConfDetailView)
+
 from nominations.views import (
     NominationCreateView,
     NominationTypeListView,
@@ -50,7 +55,12 @@ urlpatterns = patterns(
     url(r'^miniconf/$', TemplateView.as_view(
         template_name='mini_conf.html',
     ), name='miniconf'),
-
+    url(r'^localconf/apply/$',
+        login_required(LocalConfCreateView.as_view()),
+        name='local_conf_create'),
+    url(r'^localconf/(?P<pk>[\d]+)/$',
+        login_required(LocalConfDetailView.as_view()),
+        name='local_conf_detail'),
     url(r'^grants/list/$', GrantTypeListView.as_view(),
         name='grants_list'),
     url(r'^grants/apply/(?P<gtype_id>[\d]+)/$',
