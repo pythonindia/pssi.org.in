@@ -1,19 +1,19 @@
 from django.forms import (
     ModelForm,
+    CharField,
     MultipleChoiceField,
+    Textarea,
     SelectMultiple)
-from django.contrib.auth.models import User
 
-from django_markdown.fields import MarkdownFormField
-from django_markdown.widgets import MarkdownWidget
-
-
+from pagedown.widgets import PagedownWidget
 from .models import GrantRequest, LocalConfRequest, LocalConfComment
 
+LOCAL_CONF_HELP_TEXT = """
+Give us more information about the conference. These details are target audience,
+event structure, sponsors, partners, local community, previous events details, WiFi, Transport, accomodation etc ...
 
-def get_all_users():
-    return [(user.id, user.username)
-            for user in User.objects.order_by('username').all()]
+Take your time and fill the application. The markdown format is supported
+"""
 
 
 class GrantRequestForm(ModelForm):
@@ -25,13 +25,10 @@ class GrantRequestForm(ModelForm):
 
 
 class LocalConfRequestForm(ModelForm):
-    team_members = MultipleChoiceField(
-        choices=get_all_users(),
-        widget=SelectMultiple(),
-        required=False,
-        label='Team Members',
-        help_text="Select list of folks who are part of the event"
-        )
+    description = CharField(widget=PagedownWidget(show_preview=True),
+                            help_text=LOCAL_CONF_HELP_TEXT)
+    note = CharField(widget=PagedownWidget(show_preview=True),
+                     help_text="Any specific note to the board")
 
     class Meta:
         model = LocalConfRequest
@@ -59,6 +56,8 @@ class LocalConfBoardRequestForm(ModelForm):
 
 
 class LocalConfCommentForm(ModelForm):
+    text = CharField(widget=PagedownWidget(show_preview=True),
+                     help_text=LOCAL_CONF_HELP_TEXT)
     class Meta:
         model = LocalConfComment
         fields = ['text']

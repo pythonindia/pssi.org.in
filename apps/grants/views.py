@@ -13,8 +13,7 @@ from common import emailer
 from board.models import BoardMember
 
 from .models import (GrantRequest, GrantType,
-                     LocalConfRequest, LocalConfComment,
-                     LocalConfTeamMember)
+                     LocalConfRequest, LocalConfComment)
 from .forms import (GrantRequestForm, LocalConfRequestForm,
                     LocalConfBoardRequestForm, LocalConfCommentForm)
 
@@ -24,9 +23,7 @@ def is_board_member(user):
 
 
 def can_participate_in_discussion(local_conf, user):
-    return is_board_member(user) or \
-      LocalConfTeamMember.objects.filter(
-          local_conf=local_conf, team_member=user).exists()
+    return is_board_member(user)
 
 
 class GrantTypeListView(ListView):
@@ -67,24 +64,16 @@ class LocalConfCreateView(CreateView):
     form_class = LocalConfRequestForm
     template_name = 'grants/local_conf_apply.html'
 
-    def add_team_members(self, local_conf, team_members):
-        if self.request.user not in team_members:
-            LocalConfTeamMember.objects.create(
-                    local_conf=local_conf, team_member=self.request.user)
-        if team_members:
-            for team_member in team_members:
-                LocalConfTeamMember.objects.create(
-                    local_conf=local_conf, team_member=team_member)
-
     def form_valid(self, form):
         form.instance.requester = self.request.user
         form.instance.status = 'p'
         # Send email to user and staff
         local_conf = form.save()
-        self.add_team_members(local_conf, form.cleaned_data['team_members'])
+
         url = reverse('local_conf_detail', args=[local_conf.pk])
         messages.add_message(self.request, messages.INFO,
                              'New local conf grant request created.')
+
         emailer.send_new_local_conf_email(
             local_conf=local_conf, user=self.request.user,
             send_to=local_conf.get_all_participants(),

@@ -89,10 +89,8 @@ class LocalConfRequest(BaseModel):
         help_text="Enter in following format: YYYY-MM-DD")
     end_date = models.DateField(
         help_text="Enter in following format: YYYY-MM-DD")
-    website = models.URLField(help_text="Your event website.",
-        blank=True, null=True)
-    location_url = models.URLField(help_text="Your event location URL.",
-        blank=True, null=True)
+    website = models.URLField(help_text="Your event website.")
+    location_url = models.URLField(help_text="Your event location URL.")
     location_address = models.TextField(help_text="Venue address with the venue name")
     required_amount = models.FloatField("Requested amount in INR")
     transferred_amount = models.FloatField("Transferred amount in INR", default=0)
@@ -111,25 +109,14 @@ class LocalConfRequest(BaseModel):
     def get_all_participants(self):
         """Get all members who have access to the object.
         """
-        users = [member.user for member in BoardMember.objects.all()]
-        team_members = [member.team_member
-                        for member in LocalConfTeamMember.objects.filter(local_conf=self)]
-        users.extend(team_members)
+        users = set([member.user for member in BoardMember.objects.all()])
+        users.add(self.requester)
         return users
 
     def __str__(self):
         return "{name}: {start_date} - {end_date} [{status}] by {user}".format(
             name=self.name, start_date=self.start_date, end_date=self.end_date,
             status=self.get_status_display(), user=self.requester)
-
-
-class LocalConfTeamMember(BaseModel):
-    local_conf = models.ForeignKey(LocalConfRequest)
-    team_member = models.ForeignKey(settings.AUTH_USER_MODEL)
-
-    def __str__(self):
-        return "Local Conf: {local_conf} team member {user}".format(
-            local_conf=self.local_conf, user=self.team_member)
 
 
 class LocalConfComment(BaseModel):
