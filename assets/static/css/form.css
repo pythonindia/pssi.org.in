@@ -1,0 +1,15 @@
+.wmd-panel
+{
+	margin-left: 0%;
+	margin-right: 0%;
+	width: 100%;
+	min-width: 500px;
+}
+
+.wmd-input 
+{ 
+	height: 500px;
+	width: 100%;
+	background-color: #ffffff;
+	border: 1px solid DarkGray;
+}

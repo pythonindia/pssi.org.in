@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 {% load markdown_tags %}
-
+{% load static from staticfiles %}
 {% block head_title %}Apply for Local Conf Grant{% endblock %}
 
 {% block endhead %}
@@ -10,6 +10,8 @@
    content: "*";
  }
 </style>
+{{ form.media }}
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -54,9 +56,9 @@
           {% for comment in comments %}
           <div>
             {% if comment.is_system_message %}
-            {{ comment.text }}
+            {{ comment.text|markdown2html|safe}}
             {% else %}
-            {{ comment.text }}
+            {{ comment.text|markdown2html|safe }}
             <br>
             <br>
             <b> {{ comment.user.get_full_name }} (~{{ comment.user.username }}) on

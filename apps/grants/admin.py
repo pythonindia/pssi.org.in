@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_markdown.admin import MarkdownModelAdmin
 from .models import (GrantType, GrantRequest, LocalConfRequest,
-                     LocalConfTeamMember, LocalConfComment)
+                     LocalConfComment)
 
 from common import emailer
 
@@ -26,10 +26,6 @@ class GrantRequestAdmin(admin.ModelAdmin):
         self.message_user(request, "Grant update email is sent.")
 
 
-class LocalConfTeamMemberAdmin(admin.ModelAdmin):
-    pass
-
-
 class LocalConfCommentAdmin(admin.ModelAdmin):
     pass
 
@@ -37,5 +33,4 @@ class LocalConfCommentAdmin(admin.ModelAdmin):
 admin.site.register(GrantType, GrantTypeAdmin)
 admin.site.register(GrantRequest, GrantRequestAdmin)
 admin.site.register(LocalConfRequest, LocalConfRequestAdmin)
-admin.site.register(LocalConfTeamMember, LocalConfTeamMemberAdmin)
 admin.site.register(LocalConfComment, LocalConfCommentAdmin)

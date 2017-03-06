@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
 
+    'pagedown',
     'django_markdown',
     'bootstrap3',
 
@@ -186,7 +187,7 @@ LOGGING = {
 SECRET_KEY = '^@p!fj5df100)%gd7g&$c^7znjs0(uJY6qt/<19M-Zkbymc$|C'
 
 SITE_PROTOCOL = 'http'
-
+PAGEDOWN_SHOW_PREVIEW = True
 # Instamojo (payemnt) link
 
 # Add this in local settings

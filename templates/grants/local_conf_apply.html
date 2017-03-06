@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load django_markdown %}
 {% load markdown_tags %}
-
+{% load static from staticfiles %}
 {% block head_title %}Apply for Local Conf Grant{% endblock %}
 
 {% block endhead %}
@@ -10,6 +11,8 @@
    content: "*";
  }
 </style>
+{{ form.media }}
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -23,7 +26,7 @@
         <a href="{% url 'miniconf' %}">The complete details about the local conference information is available in the site.
           Please read the details before submitting the form</a>
         <hr>
-        <form class="apply_grants" method="POST" action=".">
+        <form class="apply_grants form-container" method="POST" action=".">
           {% csrf_token %}
           {% bootstrap_form form %}
           {% buttons %}
