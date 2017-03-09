@@ -41,7 +41,9 @@
           <p>Budget: {{ local_conf.budget}}</p>
           <p>Expected Audience : {{ local_conf.expected_audience }}</p>
           <p>Description: {{ local_conf.description|markdown2html|safe}}</p>
+          {% if local_conf.upload %}
           <p>Uploaded File: <a href="{% url 'local_conf_download_attachment' local_conf.id %}">Download the file</p>
+          {% endif %}
           <p>Submitted By: {{ local_conf.requester.name}}</p>
           <p> Status: 
           <span class="label label-info">
