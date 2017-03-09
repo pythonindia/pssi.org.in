@@ -7,7 +7,8 @@ from grants.views import (
     GrantRequestCreateView,
     GrantTypeListView,
     LocalConfCreateView,
-    LocalConfDetailView)
+    LocalConfDetailView,
+    LocalConfDownloadAttachmentView)
 
 from nominations.views import (
     NominationCreateView,
@@ -61,6 +62,9 @@ urlpatterns = patterns(
     url(r'^localconf/(?P<pk>[\d]+)/$',
         login_required(LocalConfDetailView.as_view()),
         name='local_conf_detail'),
+    url(r'^localconf/download/(?P<pk>[\d]+)/$',
+        login_required(LocalConfDownloadAttachmentView.as_view()),
+        name='local_conf_download_attachment'),
     url(r'^grants/list/$', GrantTypeListView.as_view(),
         name='grants_list'),
     url(r'^grants/apply/(?P<gtype_id>[\d]+)/$',

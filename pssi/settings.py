@@ -111,6 +111,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets', 'static'),
 )
 
+MEDIA_ROOT = 'media/'
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )

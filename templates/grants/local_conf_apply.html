@@ -26,7 +26,7 @@
         <a href="{% url 'miniconf' %}">The complete details about the local conference information is available in the site.
           Please read the details before submitting the form</a>
         <hr>
-        <form class="apply_grants form-container" method="POST" action=".">
+        <form enctype="multipart/form-data" class="apply_grants form-container" method="POST" action=".">
           {% csrf_token %}
           {% bootstrap_form form %}
           {% buttons %}
