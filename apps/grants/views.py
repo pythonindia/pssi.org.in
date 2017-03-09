@@ -140,7 +140,7 @@ class LocalConfDownloadAttachmentView(DetailView):
 
     def render_to_response(self, context, **response_kwargs):
         obj = self.get_object()
-        if can_participate_in_discussion(obj, request.user):
+        if can_participate_in_discussion(obj, self.request.user):
             filename = obj.upload.name.split('/')[-1]
             response = HttpResponse(
                 obj.upload.file,
