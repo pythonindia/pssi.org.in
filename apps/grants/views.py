@@ -2,12 +2,13 @@
 
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.http import HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
+from django.utils.text import slugify
 
 from common import emailer
 from board.models import BoardMember
@@ -129,4 +130,22 @@ class LocalConfDetailView(CreateView):
                        'local_conf': local_conf,
                        'comments': comments}
                 return render(request, self.template_name, ctx)
+        return HttpResponseForbidden()
+
+
+class LocalConfDownloadAttachmentView(DetailView):
+    model = LocalConfRequest
+    pk_url_kwargs = 'pk'
+    http_method_names = ['get']
+
+    def render_to_response(self, context, **response_kwargs):
+        obj = self.get_object()
+        if can_participate_in_discussion(obj, request.user):
+            filename = obj.upload.name.split('/')[-1]
+            response = HttpResponse(
+                obj.upload.file,
+                content_type=obj.get_content_type())
+            response['Content-Disposition'] = 'attachment; filename={}'.format(
+                filename.replace(' ', '_'))
+            return response
         return HttpResponseForbidden()

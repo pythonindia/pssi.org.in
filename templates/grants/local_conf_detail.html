@@ -41,14 +41,14 @@
           <p>Budget: {{ local_conf.budget}}</p>
           <p>Expected Audience : {{ local_conf.expected_audience }}</p>
           <p>Description: {{ local_conf.description|markdown2html|safe}}</p>
+          <p>Uploaded File: <a href="{% url 'local_conf_download_attachment' local_conf.id %}">Download the file</p>
           <p>Submitted By: {{ local_conf.requester.name}}</p>
           <p> Status: 
           <span class="label label-info">
             {{ local_conf.get_status_display }}
           </span>
           </p>
-          <a href="{% url 'miniconf' %}">The complete details about the local conference information is available in the site.
-            Please read the details before submitting the form</a>
+          <a href="{% url 'miniconf' %}">The complete details about the local conference information is available in the site. </a>
         </section>
         <hr>
         <section class="comments">

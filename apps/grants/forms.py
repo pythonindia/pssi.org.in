@@ -1,9 +1,4 @@
-from django.forms import (
-    ModelForm,
-    CharField,
-    MultipleChoiceField,
-    Textarea,
-    SelectMultiple)
+from django import forms
 
 from pagedown.widgets import PagedownWidget
 from .models import GrantRequest, LocalConfRequest, LocalConfComment
@@ -16,7 +11,7 @@ Take your time and fill the application. The markdown format is supported
 """
 
 
-class GrantRequestForm(ModelForm):
+class GrantRequestForm(forms.ModelForm):
     class Meta:
         model = GrantRequest
         exclude = [
@@ -24,23 +19,14 @@ class GrantRequestForm(ModelForm):
         ]
 
 
-class LocalConfRequestForm(ModelForm):
-    description = CharField(widget=PagedownWidget(show_preview=True),
+class LocalConfRequestForm(forms.ModelForm):
+    description = forms.CharField(widget=PagedownWidget(show_preview=True),
                             help_text=LOCAL_CONF_HELP_TEXT)
-    note = CharField(widget=PagedownWidget(show_preview=True),
-                     help_text="Any specific note to the board")
-
     class Meta:
         model = LocalConfRequest
         exclude = [
             'requester', 'transferred_amount', 'status', 'created_at', 'updated_at'
         ]
-
-    def clean_team_members(self):
-        data = self.cleaned_data['team_members']
-        if data:
-            return User.objects.filter(pk__in=data)
-        return None
 
     def clean_status(self):
         data = self.cleaned_data['status']
@@ -48,15 +34,23 @@ class LocalConfRequestForm(ModelForm):
             return data
         return 'p'
 
+    def clean_upload(self):
+        ALLOWED_FORMATS = (".pdf", ".ods", ".xlsx")
+        file = self.cleaned_data.get('upload')
+        if not file._get_name().endswith(ALLOWED_FORMATS):
+            raise forms.ValidationError(
+                "Allowed formats are {}".format(ALLOWED_FORMATS))
+        return file
 
-class LocalConfBoardRequestForm(ModelForm):
+
+class LocalConfBoardRequestForm(forms.ModelForm):
     class Meta:
         model = LocalConfRequest
         fields = ['status', 'transferred_amount']
 
 
-class LocalConfCommentForm(ModelForm):
-    text = CharField(widget=PagedownWidget(show_preview=True),
+class LocalConfCommentForm(forms.ModelForm):
+    text = forms.CharField(widget=PagedownWidget(show_preview=True),
                      help_text=LOCAL_CONF_HELP_TEXT)
     class Meta:
         model = LocalConfComment

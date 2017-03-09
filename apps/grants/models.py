@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.conf import settings
 from common.models import BaseModel
@@ -27,6 +29,12 @@ event structure, sponsors, partners, local community, previous events details, W
 
 Take your time and fill the application. The markdown format is supported
 """
+
+
+def upload_to_path(local_conf, filename):
+    date = str(datetime.datetime.now().date())
+    return u"{name}/{date}/{filename}".format(
+        name=local_conf.name, date=date, filename=filename)
 
 
 class GrantType(BaseModel):
@@ -100,8 +108,8 @@ class LocalConfRequest(BaseModel):
                                 help_text=LOCAL_CONF_HELP_TEXT)
     is_brand_new = models.BooleanField(help_text="Is the event held for the first time?",
                                        default=True)
-    note = MarkdownField(help_text="Any specific note to the board",
-                         null=True, blank=True)
+    upload = models.FileField(upload_to=upload_to_path,
+                              help_text='Upload a PDF or Spreadsheet(.xlsx, .ods) about Fund Heading.')
     status = models.CharField(
         max_length=1, choices=LOCAL_CONF_STATUS_CHOICES, db_index=True)
     requester = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -112,6 +120,14 @@ class LocalConfRequest(BaseModel):
         users = set([member.user for member in BoardMember.objects.all()])
         users.add(self.requester)
         return users
+
+    def get_content_type(self):
+        if self.upload.name.endswith('.pdf'):
+            return 'application/pdf'
+        elif self.upload.name.endswith('.xlsx'):
+            return 'application/vnd.ms-excel'
+        elif self.upload.name.endswith('ods'):
+            return 'application/vnd.oasis.opendocument.spreadsheet'
 
     def __str__(self):
         return "{name}: {start_date} - {end_date} [{status}] by {user}".format(
