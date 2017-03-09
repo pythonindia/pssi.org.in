@@ -28,7 +28,6 @@
         <hr>
         <form enctype="multipart/form-data" class="apply_grants form-container" method="POST" action=".">
           {% csrf_token %}
-          {{ form.errors }}
           {% bootstrap_form form %}
           {% buttons %}
           <button type="submit" class="btn btn-primary">
