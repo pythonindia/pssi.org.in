@@ -31,7 +31,7 @@ Take your time and fill the application. The markdown format is supported
 """
 
 UPLOAD_HELP_TEXT = """
-Upload a PDF or Spreadsheet(.xlsx, .ods) about Fund Heading. <a href="https://goo.gl/wxPZvX">Download a sample file</a>"""
+Upload a PDF or Spreadsheet(.xlsx, .ods) about Fund Heading. <a href="https://goo.gl/wxPZvX"> Click here</a> for an example"""
 
 
 def upload_to_path(local_conf, filename):
