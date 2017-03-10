@@ -30,6 +30,9 @@ event structure, sponsors, partners, local community, previous events details, W
 Take your time and fill the application. The markdown format is supported
 """
 
+UPLOAD_HELP_TEXT = """
+Upload a PDF or Spreadsheet(.xlsx, .ods) about Fund Heading. <a href="https://goo.gl/wxPZvX">Download a sample file</a>"""
+
 
 def upload_to_path(local_conf, filename):
     date = str(datetime.datetime.now().date())
@@ -108,8 +111,7 @@ class LocalConfRequest(BaseModel):
                                 help_text=LOCAL_CONF_HELP_TEXT)
     is_brand_new = models.BooleanField(help_text="Is the event held for the first time?",
                                        default=True)
-    upload = models.FileField(upload_to=upload_to_path,
-                              help_text='Upload a PDF or Spreadsheet(.xlsx, .ods) about Fund Heading.')
+    upload = models.FileField(upload_to=upload_to_path, help_text=UPLOAD_HELP_TEXT)
     status = models.CharField(
         max_length=1, choices=LOCAL_CONF_STATUS_CHOICES, db_index=True)
     requester = models.ForeignKey(settings.AUTH_USER_MODEL)
